@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Zaryab's Portfolio{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="text-neon-green bg-black font-visitor overflow-x-hidden">
+    <!-- Enhanced Navigation Bar -->
+    <nav class="fixed left-0 top-0 h-full bg-black bg-opacity-90 w-16 md:w-72 flex flex-col z-30 border-r-2 border-neon-green backdrop-blur-sm transition-all duration-300" id="sidebar" aria-label="Main navigation">
+        <!-- Logo/Brand Section -->
+        <div class="flex items-center justify-center h-20 border-b border-neon-green bg-gradient-to-r from-black to-gray-900">
+            <div class="text-2xl font-bold text-neon-green animate-pulse">
+                <span class="hidden md:inline">ZARYAB</span>
+                <span class="md:hidden">Z</span>
+            </div>
+        </div>
+
+        <!-- Mobile Toggle Button -->
+        <button id="nav-toggle" class="md:hidden absolute top-4 right-4 text-neon-green p-2 focus:outline-none z-40">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+
+        <!-- Navigation Links -->
+        <div id="nav-links" class="flex flex-col flex-1 py-4 space-y-1 overflow-y-auto">
+            <!-- Home -->
+            <a href="{% url 'home' %}" class="nav-link group flex items-center px-4 py-3 text-sm font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-20 hover:border-r-4 hover:border-neon-green" data-tooltip="Home">
+                <i class="fas fa-home w-6 text-center mr-3"></i>
+                <span class="hidden md:inline">Home</span>
+                <div class="nav-glow"></div>
+            </a>
+
+            <!-- About Me -->
+            <a href="{% url 'about' %}" class="nav-link group flex items-center px-4 py-3 text-sm font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-20 hover:border-r-4 hover:border-neon-green" data-tooltip="About Me">
+                <i class="fas fa-user w-6 text-center mr-3"></i>
+                <span class="hidden md:inline">About Me</span>
+                <div class="nav-glow"></div>
+            </a>
+
+            <!-- Projects Section -->
+            <div class="nav-section">
+                <div class="nav-section-header flex items-center px-4 py-3 text-sm font-medium cursor-pointer transition-all duration-300 hover:bg-neon-green hover:bg-opacity-10" onclick="toggleSection('projects')">
+                    <i class="fas fa-code w-6 text-center mr-3"></i>
+                    <span class="hidden md:inline flex-1">Projects</span>
+                    <i class="fas fa-chevron-down hidden md:inline transition-transform duration-300" id="projects-arrow"></i>
+                </div>
+                <div class="nav-subsection hidden" id="projects-content">
+
+                    <!-- Machine Learning -->
+                    <a href="{% url 'machine_learning' %}" class="nav-link flex items-center px-8 py-2 text-xs font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-10">
+                        <i class="fas fa-brain w-5 text-center mr-2"></i>
+                        <span class="hidden md:inline">Machine Learning</span>
+                    </a>
+
+                    <!-- Web Applications -->
+                    <a href="{% url 'anomaly_ids' %}" class="nav-link flex items-center px-8 py-2 text-xs font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-10">
+                        <i class="fas fa-globe w-5 text-center mr-2"></i>
+                        <span class="hidden md:inline">Web Applications</span>
+                    </a>
+
+                    <!-- Anomaly based IDS -->
+                    <a href="{% url 'anomaly_ids' %}" class="nav-link flex items-center px-8 py-2 text-xs font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-10">
+                        <i class="fas fa-shield-alt w-5 text-center mr-2"></i>
+                        <span class="hidden md:inline">Anomaly based IDS</span>
+                    </a>
+
+                    <!-- Cybersecurity -->
+                    <a href="{% url 'anomaly_ids' %}" class="nav-link flex items-center px-8 py-2 text-xs font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-10">
+                        <i class="fas fa-lock w-5 text-center mr-2"></i>
+                        <span class="hidden md:inline">Cybersecurity</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <a href="{% url 'contact' %}" class="nav-link group flex items-center px-4 py-3 text-sm font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-20 hover:border-r-4 hover:border-neon-green" data-tooltip="Contact">
+                <i class="fas fa-envelope w-6 text-center mr-3"></i>
+                <span class="hidden md:inline">Contact</span>
+                <div class="nav-glow"></div>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="border-t border-neon-green p-4 text-center">
+            <div class="text-xs text-gray-400 hidden md:block">
+                © 2024 Zaryab
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="relative ml-16 md:ml-72 min-h-screen">
+        <!-- Matrix Canvas Background -->
+        <div id="matrix-canvas" class="fixed inset-0 z-0 opacity-20 pointer-events-none"></div>
+        
+        <!-- Content Wrapper -->
+        <div class="relative z-10">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Floating Chatbot Button -->
+    <div id="chatbot" class="fixed bottom-6 right-6 bg-gradient-to-r from-neon-green to-green-400 text-black p-4 rounded-full cursor-pointer hover:shadow-lg hover:shadow-neon-green transition-all duration-300 transform hover:scale-110 z-40 group">
+        <i class="fas fa-comments text-xl"></i>
+        <div class="absolute bottom-full right-0 mb-2 px-3 py-1 bg-black bg-opacity-90 text-neon-green text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            Chat with me!
+        </div>
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="nav-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden"></div>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/matrix.js' %}"></script>
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'js/chatbot.js' %}"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({ duration: 800, once: true });
+
+        // Navigation toggle functionality
+        function toggleSection(sectionId) {
+            const content = document.getElementById(sectionId + '-content');
+            const arrow = document.getElementById(sectionId + '-arrow');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function toggleSubsection(subsectionId) {
+            const content = document.getElementById(subsectionId + '-content');
+            const arrow = document.getElementById(subsectionId + '-arrow');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Mobile navigation toggle
+        document.getElementById('nav-toggle').addEventListener('click', () => {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('nav-overlay');
+            
+            if (sidebar.classList.contains('w-16')) {
+                sidebar.classList.remove('w-16');
+                sidebar.classList.add('w-72');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.remove('w-72');
+                sidebar.classList.add('w-16');
+                overlay.classList.add('hidden');
+            }
+        });
+
+        // Close mobile nav when clicking overlay
+        document.getElementById('nav-overlay').addEventListener('click', () => {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('nav-overlay');
+            
+            sidebar.classList.remove('w-72');
+            sidebar.classList.add('w-16');
+            overlay.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,179 @@
+@font-face {
+    font-family: 'Visitor';
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --neon-blue: #596869;
+    --black: #1A1A1A;
+}
+
+.text-neon-green {
+    color: #f8f7f4;
+}
+
+.bg-neon-green {
+    background-color: var(--neon-blue);
+}
+
+.border-neon-green {
+    border-color: var(--neon-blue);
+}
+
+.bg-black {
+    background-color: var(--black);
+}
+
+.font-visitor {
+    font-family: 'Visitor', monospace;
+}
+
+body {
+    font-family: 'Visitor', monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Visitor', monospace;
+}
+
+.hover\:shadow-neon-green:hover {
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.animate-fade-in {
+    animation: fade-in 1s ease-in forwards;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animation-delay-2s {
+    animation-delay: 2s;
+}
+
+/* Glitch Animation */
+.animate-glitch {
+    position: relative;
+}
+
+.animate-glitch::before,
+.animate-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.animate-glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00ff;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+.animate-glitch::after {
+    left: -2px;
+    text-shadow: 2px 0 #00fff9;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 1.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(44px, 450px, 56px, 0); }
+    5% { clip: rect(12px, 450px, 32px, 0); }
+    10% { clip: rect(76px, 450px, 88px, 0); }
+    15% { clip: rect(24px, 450px, 36px, 0); }
+    20% { clip: rect(64px, 450px, 76px, 0); }
+    100% { clip: rect(44px, 450px, 56px, 0); }
+}
+
+/* Navigation Preview Box */
+.nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1rem;
+}
+
+.nav-preview {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    width: 200px;
+    padding: 1rem;
+    background-color: rgba(26, 26, 26, 0.8);
+    border: 2px solid var(--neon-blue);
+    color: #f8f7f4;
+    font-family: 'Visitor', monospace;
+    font-size: 0.9rem;
+    z-index: 30;
+    transform: translateX(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover .nav-preview {
+    display: block;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Nav Glitch Effect */
+.nav-link:hover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 50px;
+    height: 1px;
+    background: var(--neon-blue);
+    opacity: 0.5;
+    animation: glitch-line 0.2s infinite;
+}
+
+@keyframes glitch-line {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+
+/* Scan Line Effect */
+.hero-scanline {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--neon-blue);
+    opacity: 0.3;
+    animation: scanline 4s infinite;
+}
+
+@keyframes scanline {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+/* Home Icon Styling */
+.home-icon {
+    width: 64px;
+    height: 64px;
+    filter: brightness(1.5);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .home-icon {
+        width: 140px;
+        height: 70px;
+    }
+}
+
+.nav-link:hover .home-icon {
+    filter: brightness(2) drop-shadow(0 0 10px var(--neon-blue));
+}
