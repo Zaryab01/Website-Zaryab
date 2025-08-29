@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Web Applications — Zaryab{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="px-4 md:px-10 pt-24 pb-6" data-aos="fade-down">
+  <div class="flex items-center space-x-3">
+    <i class="fas fa-code text-2xl"></i>
+    <h1 class="text-2xl md:text-3xl font-bold tracking-wide">Web Applications</h1>
+  </div>
+  <p class="mt-2 text-sm md:text-base text-gray-300 max-w-3xl">
+    A collection of full-stack applications built with Django, Flask, and supporting frameworks. Each project is tailored to solve real-world problems with emphasis on usability, reliability, and clean architecture.
+  </p>
+</section>
+
+<section class="px-4 md:px-10 pb-20 space-y-12">
+
+  <!-- =============================== SEGMENTATION PLATFORM =============================== -->
+  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
+    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+
+    <div class="p-6 md:p-8 space-y-6">
+      <!-- Title -->
+      <header>
+        <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
+          <i class="fas fa-users-cog"></i>
+          Segmentation Model — Marketing Science Ltd
+        </h2>
+      </header>
+
+      <!-- Description -->
+      <p class="text-gray-200 text-sm leading-relaxed">
+        The Segmentation Model by <span class="font-semibold">Marketing Science Limited</span> is a user-friendly web platform
+        for analyzing behavioral data and generating AI-powered personas. Designed for marketing, research, and analytics,
+        it transforms raw behavioral data into <span class="text-neon-green">clear, actionable insights</span>. The workflow
+        includes data input, standardization, factor analysis, clustering, persona generation (via GPT-5 mini), and export
+        of structured results. It also provides robust visualization tools such as PCA plots and silhouette analysis.
+        <br><br>
+        Hosted at <a href="https://segmentation.marketsci.co.uk" target="_blank" class="underline hover:text-neon-green">segmentation.marketsci.co.uk</a>.
+        Copyright © Marketing Science Ltd.
+      </p>
+
+      <!-- Screenshot Slider -->
+      <div class="relative border border-neon-green rounded-xl overflow-hidden">
+        <div id="segmentationSlider" class="slider w-full h-72 md:h-96 relative">
+          <div class="slide w-full h-full hidden"><img src="{% static 'images/segmentation/slide1.png' %}" alt="Segmentation Screenshot 1" class="w-full h-full object-cover" /></div>
+          <div class="slide w-full h-full hidden"><img src="{% static 'images/segmentation/slide2.png' %}" alt="Segmentation Screenshot 2" class="w-full h-full object-cover" /></div>
+          <div class="slide w-full h-full hidden"><img src="{% static 'images/segmentation/slide3.png' %}" alt="Segmentation Screenshot 3" class="w-full h-full object-cover" /></div>
+          <!-- Controls -->
+          <button class="prev absolute top-1/2 left-2 -translate-y-1/2 text-white"><i class="fas fa-chevron-left"></i></button>
+          <button class="next absolute top-1/2 right-2 -translate-y-1/2 text-white"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- =============================== INVENTORY MANAGEMENT SYSTEM =============================== -->
+  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
+    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+
+    <div class="p-6 md:p-8 space-y-6">
+      <!-- Title -->
+      <header>
+        <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
+          <i class="fas fa-warehouse"></i>
+          Restaurant Inventory Management System — Flask + PyQt5
+        </h2>
+      </header>
+
+      <!-- Description -->
+      <p class="text-gray-200 text-sm leading-relaxed">
+        A role-based inventory management system designed for restaurant operations. Built with <span class="font-semibold">Flask</span> (backend)
+        and <span class="font-semibold">PyQt5</span> (client GUI), it features secure account creation (passwords stored as hashes),
+        role-based access (Head Chef, Chef, Rider), automated stock reordering, expiry date tracking, and real-time shortage alerts.
+        The app launches in a <span class="text-neon-green">mobile-sized window</span>, designed for quick adoption in kitchen environments.
+      </p>
+
+      <!-- Mobile-Like Showcase -->
+      <div class="flex justify-center">
+        <div class="border-4 border-neon-green rounded-2xl w-52 h-[420px] overflow-hidden relative bg-black">
+          <div id="inventorySlider" class="slider w-full h-full relative">
+            <div class="slide w-full h-full hidden"><img src="{% static 'images/inventory/slide1.png' %}" alt="Inventory Screenshot 1" class="w-full h-full object-cover" /></div>
+            <div class="slide w-full h-full hidden"><img src="{% static 'images/inventory/slide2.png' %}" alt="Inventory Screenshot 2" class="w-full h-full object-cover" /></div>
+            <div class="slide w-full h-full hidden"><img src="{% static 'images/inventory/slide3.png' %}" alt="Inventory Screenshot 3" class="w-full h-full object-cover" /></div>
+            <!-- Controls -->
+            <button class="prev absolute top-1/2 left-1 -translate-y-1/2 text-white"><i class="fas fa-chevron-left"></i></button>
+            <button class="next absolute top-1/2 right-1 -translate-y-1/2 text-white"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- =============================== MENU WEBSITE =============================== -->
+  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
+    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+
+    <div class="p-6 md:p-8 space-y-6">
+      <!-- Title -->
+      <header>
+        <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
+          <i class="fas fa-utensils"></i>
+          Interactive Menu & Checkout Website — Django
+        </h2>
+      </header>
+
+      <!-- Description -->
+      <p class="text-gray-200 text-sm leading-relaxed">
+        A dynamic restaurant website featuring a multilingual menu (English ↔ Arabic), seamless checkout via Stripe API,
+        and cart management. Customers can browse items, add them to cart, and complete purchases securely. The platform
+        was engineered with scalability and localization in mind, ensuring accessibility for diverse audiences.
+      </p>
+
+      <!-- Screenshot Slider -->
+      <div class="relative border border-neon-green rounded-xl overflow-hidden">
+        <div id="menuSlider" class="slider w-full h-72 md:h-96 relative">
+          <div class="slide w-full h-full hidden"><img src="{% static 'images/menu/slide1.png' %}" alt="Menu Screenshot 1" class="w-full h-full object-cover" /></div>
+          <div class="slide w-full h-full hidden"><img src="{% static 'images/menu/slide2.png' %}" alt="Menu Screenshot 2" class="w-full h-full object-cover" /></div>
+          <div class="slide w-full h-full hidden"><img src="{% static 'images/menu/slide3.png' %}" alt="Menu Screenshot 3" class="w-full h-full object-cover" /></div>
+          <!-- Controls -->
+          <button class="prev absolute top-1/2 left-2 -translate-y-1/2 text-white"><i class="fas fa-chevron-left"></i></button>
+          <button class="next absolute top-1/2 right-2 -translate-y-1/2 text-white"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<!-- ===== Slider Logic ===== -->
+<script>
+  function initSlider(sliderId) {
+    const slider = document.getElementById(sliderId);
+    const slides = slider.querySelectorAll('.slide');
+    const prev = slider.querySelector('.prev');
+    const next = slider.querySelector('.next');
+    let idx = 0;
+    function showSlide(i) {
+      slides.forEach((s, j) => s.classList.toggle('hidden', j !== i));
+    }
+    function nextSlide() { idx = (idx + 1) % slides.length; showSlide(idx); }
+    function prevSlide() { idx = (idx - 1 + slides.length) % slides.length; showSlide(idx); }
+    next.addEventListener('click', nextSlide);
+    prev.addEventListener('click', prevSlide);
+    showSlide(idx);
+  }
+  initSlider('segmentationSlider');
+  initSlider('inventorySlider');
+  initSlider('menuSlider');
+</script>
+
+{% endblock %}

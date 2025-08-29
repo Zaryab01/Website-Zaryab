@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Anomaly-Based IDS — Zaryab{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="px-4 md:px-10 pt-24 pb-6" data-aos="fade-down">
+  <div class="flex items-center space-x-3">
+    <i class="fas fa-shield-alt text-2xl"></i>
+    <h1 class="text-2xl md:text-3xl font-bold tracking-wide">Anomaly-Based Intrusion Detection System</h1>
+  </div>
+  <p class="mt-2 text-sm md:text-base text-gray-300 max-w-3xl">
+    My final year group project for Bachelors in Cybersecurity — a full pipeline IDS leveraging <span class="text-neon-green">Nvidia Morpheus</span>,
+    <span class="text-neon-green">Docker</span>, <span class="text-neon-green">Apache Kafka</span>, <span class="text-neon-green">Filebeat</span>,
+    <span class="text-neon-green">Logstash</span>, and <span class="text-neon-green">Grafana</span>. The system ingests CloudTrail logs in real time,
+    fingerprints user activity, and flags anomalies through an Autoencoder-based model, with interactive dashboards for monitoring.
+  </p>
+</section>
+
+<section class="px-4 md:px-10 pb-20 space-y-12">
+
+  <!-- =============================== PIPELINE VISUAL =============================== -->
+  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden p-8" data-aos="fade-up">
+    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+
+    <h2 class="text-xl md:text-2xl font-semibold mb-6 flex items-center gap-3">
+      <i class="fas fa-project-diagram"></i>
+      System Pipeline
+    </h2>
+
+    <div class="overflow-x-auto">
+      <div class="flex items-center justify-start space-x-6 min-w-[1000px] py-6">
+        <!-- CloudTrail Logs -->
+        <div class="flex flex-col items-center">
+          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
+            <i class="fas fa-cloud text-3xl"></i>
+          </div>
+          <span class="mt-2 text-xs font-semibold">CloudTrail Logs</span>
+        </div>
+        <i class="fas fa-arrow-right text-neon-green text-xl"></i>
+
+        <!-- Filebeat + Logstash -->
+        <div class="flex flex-col items-center">
+          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
+            <i class="fas fa-cogs text-3xl"></i>
+          </div>
+          <span class="mt-2 text-xs font-semibold">Filebeat / Logstash</span>
+        </div>
+        <i class="fas fa-arrow-right text-neon-green text-xl"></i>
+
+        <!-- Apache Kafka -->
+        <div class="flex flex-col items-center">
+          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
+            <i class="fas fa-stream text-3xl"></i>
+          </div>
+          <span class="mt-2 text-xs font-semibold">Apache Kafka</span>
+        </div>
+        <i class="fas fa-arrow-right text-neon-green text-xl"></i>
+
+        <!-- Nvidia Morpheus -->
+        <div class="flex flex-col items-center">
+          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
+            <i class="fas fa-microchip text-3xl"></i>
+          </div>
+          <span class="mt-2 text-xs font-semibold">Nvidia Morpheus</span>
+        </div>
+        <i class="fas fa-arrow-right text-neon-green text-xl"></i>
+
+        <!-- Autoencoder -->
+        <div class="flex flex-col items-center">
+          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
+            <i class="fas fa-brain text-3xl"></i>
+          </div>
+          <span class="mt-2 text-xs font-semibold">Autoencoder</span>
+        </div>
+        <i class="fas fa-arrow-right text-neon-green text-xl"></i>
+
+        <!-- Grafana Dashboards -->
+        <div class="flex flex-col items-center">
+          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
+            <i class="fas fa-chart-bar text-3xl"></i>
+          </div>
+          <span class="mt-2 text-xs font-semibold">Grafana Dashboards</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-gray-400 text-xs mt-3 text-center max-w-3xl mx-auto">
+      End-to-end flow: CloudTrail logs → Filebeat/Logstash for preprocessing → Apache Kafka (Dockerized) → Nvidia Morpheus pipeline → Autoencoder model for anomaly scoring → Grafana dashboards for visualization.
+    </p>
+  </article>
+
+  <!-- =============================== DESCRIPTION =============================== -->
+  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden p-8" data-aos="fade-up">
+    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+
+    <h2 class="text-xl md:text-2xl font-semibold mb-6 flex items-center gap-3">
+      <i class="fas fa-info-circle"></i>
+      Project Overview
+    </h2>
+
+    <p class="text-gray-200 text-sm leading-relaxed">
+      This system was built to demonstrate how modern data engineering tools can be fused with AI models to
+      detect security anomalies in cloud environments. Key highlights include:
+    </p>
+    <ul class="list-disc list-inside text-sm text-gray-300 mt-3 space-y-1">
+      <li><span class="font-semibold">Scalable Ingestion:</span> Logs streamed into Kafka topics running inside Docker containers.</li>
+      <li><span class="font-semibold">Deep Learning Detection:</span> Morpheus pipeline with an Autoencoder trained on digital fingerprints of users.</li>
+      <li><span class="font-semibold">Real-time Dashboards:</span> Grafana visualizes anomalies, trends, and live metrics.</li>
+      <li><span class="font-semibold">Cloud-ready:</span> Compatible with AWS/Azure CloudTrail logs.</li>
+    </ul>
+  </article>
+
+  <!-- =============================== RESULTS SLIDESHOW =============================== -->
+  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden p-8" data-aos="fade-up">
+    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+
+    <h2 class="text-xl md:text-2xl font-semibold mb-6 flex items-center gap-3">
+      <i class="fas fa-desktop"></i>
+      Workstation Proof & Results
+    </h2>
+
+    <div class="relative border border-neon-green rounded-xl overflow-hidden">
+      <div id="idsSlider" class="slider w-full h-72 md:h-96 relative">
+        <div class="slide w-full h-full hidden"><img src="{% static 'images/ids/slide1.png' %}" alt="IDS Screenshot 1" class="w-full h-full object-cover" /></div>
+        <div class="slide w-full h-full hidden"><img src="{% static 'images/ids/slide2.png' %}" alt="IDS Screenshot 2" class="w-full h-full object-cover" /></div>
+        <div class="slide w-full h-full hidden"><img src="{% static 'images/ids/slide3.png' %}" alt="IDS Screenshot 3" class="w-full h-full object-cover" /></div>
+        <!-- Controls -->
+        <button class="prev absolute top-1/2 left-2 -translate-y-1/2 text-white"><i class="fas fa-chevron-left"></i></button>
+        <button class="next absolute top-1/2 right-2 -translate-y-1/2 text-white"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <p class="text-gray-400 text-xs mt-3 text-center">Screenshots of Kafka UI, Morpheus pipeline console, and Grafana anomaly dashboards as evidence of real deployment.</p>
+  </article>
+
+</section>
+
+<!-- Slider Logic -->
+<script>
+  function initSlider(sliderId) {
+    const slider = document.getElementById(sliderId);
+    const slides = slider.querySelectorAll('.slide');
+    const prev = slider.querySelector('.prev');
+    const next = slider.querySelector('.next');
+    let idx = 0;
+    function showSlide(i) {
+      slides.forEach((s, j) => s.classList.toggle('hidden', j !== i));
+    }
+    function nextSlide() { idx = (idx + 1) % slides.length; showSlide(idx); }
+    function prevSlide() { idx = (idx - 1 + slides.length) % slides.length; showSlide(idx); }
+    next.addEventListener('click', nextSlide);
+    prev.addEventListener('click', prevSlide);
+    showSlide(idx);
+  }
+  initSlider('idsSlider');
+</script>
+
+{% endblock %}
