@@ -21,96 +21,179 @@
 <section class="px-4 md:px-10 pb-20 space-y-12">
 
   <!-- =============================== PIPELINE VISUAL =============================== -->
-  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden p-8" data-aos="fade-up">
-    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+<article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden p-8" data-aos="fade-up">
+  <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
 
-    <h2 class="text-xl md:text-2xl font-semibold mb-6 flex items-center gap-3">
-      <i class="fas fa-project-diagram"></i>
-      System Pipeline
-    </h2>
+  <h2 class="text-xl md:text-2xl font-semibold mb-6 flex items-center gap-3">
+    <i class="fas fa-project-diagram"></i>
+    System Pipeline
+  </h2>
 
-    <div class="overflow-x-auto">
-      <div class="flex items-center justify-start space-x-6 min-w-[1000px] py-6">
-        <!-- CloudTrail Logs -->
-        <div class="flex flex-col items-center">
-          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
-            <i class="fas fa-cloud text-3xl"></i>
-          </div>
-          <span class="mt-2 text-xs font-semibold">CloudTrail Logs</span>
+  <div class="overflow-x-auto">
+    <div class="flex items-center justify-center space-x-8 min-w-[1000px] py-6">
+
+      <!-- Pipeline Node -->
+      <div class="flex flex-col items-center transition-transform duration-300 hover:scale-110">
+        <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900 shadow-[0_0_10px_#39ff14] hover:shadow-[0_0_20px_#39ff14]">
+          <i class="fas fa-cloud text-3xl text-neon-green"></i>
         </div>
-        <i class="fas fa-arrow-right text-neon-green text-xl"></i>
+        <span class="mt-2 text-xs font-semibold">CloudTrail Logs</span>
+      </div>
 
-        <!-- Filebeat + Logstash -->
-        <div class="flex flex-col items-center">
-          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
-            <i class="fas fa-cogs text-3xl"></i>
-          </div>
-          <span class="mt-2 text-xs font-semibold">Filebeat / Logstash</span>
-        </div>
-        <i class="fas fa-arrow-right text-neon-green text-xl"></i>
+      <!-- Arrow -->
+      <i class="fas fa-arrow-right text-neon-green text-xl animate-pulse"></i>
 
-        <!-- Apache Kafka -->
-        <div class="flex flex-col items-center">
-          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
-            <i class="fas fa-stream text-3xl"></i>
-          </div>
-          <span class="mt-2 text-xs font-semibold">Apache Kafka</span>
+      <!-- Pipeline Node -->
+      <div class="flex flex-col items-center transition-transform duration-300 hover:scale-110">
+        <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900 shadow-[0_0_10px_#39ff14] hover:shadow-[0_0_20px_#39ff14]">
+          <i class="fas fa-cogs text-3xl text-neon-green"></i>
         </div>
-        <i class="fas fa-arrow-right text-neon-green text-xl"></i>
+        <span class="mt-2 text-xs font-semibold">Filebeat / Logstash</span>
+      </div>
 
-        <!-- Nvidia Morpheus -->
-        <div class="flex flex-col items-center">
-          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
-            <i class="fas fa-microchip text-3xl"></i>
-          </div>
-          <span class="mt-2 text-xs font-semibold">Nvidia Morpheus</span>
-        </div>
-        <i class="fas fa-arrow-right text-neon-green text-xl"></i>
+      <!-- Arrow -->
+      <i class="fas fa-arrow-right text-neon-green text-xl animate-pulse"></i>
 
-        <!-- Autoencoder -->
-        <div class="flex flex-col items-center">
-          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
-            <i class="fas fa-brain text-3xl"></i>
-          </div>
-          <span class="mt-2 text-xs font-semibold">Autoencoder</span>
+      <!-- Pipeline Node -->
+      <div class="flex flex-col items-center transition-transform duration-300 hover:scale-110">
+        <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900 shadow-[0_0_10px_#39ff14] hover:shadow-[0_0_20px_#39ff14]">
+          <i class="fas fa-stream text-3xl text-neon-green"></i>
         </div>
-        <i class="fas fa-arrow-right text-neon-green text-xl"></i>
+        <span class="mt-2 text-xs font-semibold">Apache Kafka</span>
+      </div>
 
-        <!-- Grafana Dashboards -->
-        <div class="flex flex-col items-center">
-          <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900">
-            <i class="fas fa-chart-bar text-3xl"></i>
-          </div>
-          <span class="mt-2 text-xs font-semibold">Grafana Dashboards</span>
+      <!-- Arrow -->
+      <i class="fas fa-arrow-right text-neon-green text-xl animate-pulse"></i>
+
+      <!-- Pipeline Node -->
+      <div class="flex flex-col items-center transition-transform duration-300 hover:scale-110">
+        <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900 shadow-[0_0_10px_#39ff14] hover:shadow-[0_0_20px_#39ff14]">
+          <i class="fas fa-microchip text-3xl text-neon-green"></i>
         </div>
+        <span class="mt-2 text-xs font-semibold">Nvidia Morpheus</span>
+      </div>
+
+      <!-- Arrow -->
+      <i class="fas fa-arrow-right text-neon-green text-xl animate-pulse"></i>
+
+      <!-- Pipeline Node -->
+      <div class="flex flex-col items-center transition-transform duration-300 hover:scale-110">
+        <div class="w-28 h-28 rounded-full border-2 border-neon-green flex items-center justify-center bg-gray-900 shadow-[0_0_10px_#39ff14] hover:shadow-[0_0_20px_#39ff14]">
+          <i class="fas fa-chart-bar text-3xl text-neon-green"></i>
+        </div>
+        <span class="mt-2 text-xs font-semibold">Grafana Dashboards</span>
       </div>
     </div>
+  </div>
 
-    <p class="text-gray-400 text-xs mt-3 text-center max-w-3xl mx-auto">
-      End-to-end flow: CloudTrail logs → Filebeat/Logstash for preprocessing → Apache Kafka (Dockerized) → Nvidia Morpheus pipeline → Autoencoder model for anomaly scoring → Grafana dashboards for visualization.
-    </p>
-  </article>
+  <p class="text-gray-400 text-xs mt-3 text-center max-w-3xl mx-auto">
+    End-to-end flow: CloudTrail logs → Filebeat/Logstash for preprocessing → Apache Kafka (Dockerized) → Nvidia Morpheus pipeline → Autoencoder model for anomaly scoring → Grafana dashboards for visualization.
+  </p>
+</article>
+
 
   <!-- =============================== DESCRIPTION =============================== -->
-  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden p-8" data-aos="fade-up">
-    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+<article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden p-8" data-aos="fade-up">
+  <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
 
-    <h2 class="text-xl md:text-2xl font-semibold mb-6 flex items-center gap-3">
-      <i class="fas fa-info-circle"></i>
-      Project Overview
-    </h2>
+  <!-- Project Overview -->
+  <h2 class="text-xl md:text-2xl font-semibold mb-6 flex items-center gap-3">
+    <i class="fas fa-info-circle"></i>
+    Project Overview
+  </h2>
+  <p class="text-gray-200 text-sm leading-relaxed">
+    This system was built to demonstrate how modern data engineering tools can be fused with AI models to
+    detect security anomalies in cloud environments. Key highlights include:
+  </p>
+  <ul class="list-disc list-inside text-sm text-gray-300 mt-3 space-y-1">
+    <li><span class="font-semibold">Scalable Ingestion:</span> Logs streamed into Kafka topics running inside Docker containers.</li>
+    <li><span class="font-semibold">Deep Learning Detection:</span> Morpheus pipeline with an Autoencoder trained on digital fingerprints of users.</li>
+    <li><span class="font-semibold">Real-time Dashboards:</span> Grafana visualizes anomalies, trends, and live metrics.</li>
+    <li><span class="font-semibold">Cloud-ready:</span> Compatible with AWS/Azure CloudTrail logs.</li>
+  </ul>
 
-    <p class="text-gray-200 text-sm leading-relaxed">
-      This system was built to demonstrate how modern data engineering tools can be fused with AI models to
-      detect security anomalies in cloud environments. Key highlights include:
-    </p>
-    <ul class="list-disc list-inside text-sm text-gray-300 mt-3 space-y-1">
-      <li><span class="font-semibold">Scalable Ingestion:</span> Logs streamed into Kafka topics running inside Docker containers.</li>
-      <li><span class="font-semibold">Deep Learning Detection:</span> Morpheus pipeline with an Autoencoder trained on digital fingerprints of users.</li>
-      <li><span class="font-semibold">Real-time Dashboards:</span> Grafana visualizes anomalies, trends, and live metrics.</li>
-      <li><span class="font-semibold">Cloud-ready:</span> Compatible with AWS/Azure CloudTrail logs.</li>
-    </ul>
-  </article>
+  <!-- System Architecture -->
+  <h2 class="text-xl md:text-2xl font-semibold mt-10 mb-6 flex items-center gap-3">
+    <i class="fas fa-project-diagram"></i>
+    System Architecture & Technical Implementation
+  </h2>
+
+  <!-- Grid Layout -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- AWS CloudTrail -->
+    <div class="p-4 border border-neon-green rounded-lg bg-gray-900 bg-opacity-50">
+      <div class="flex items-center gap-2 mb-2">
+        <i class="fas fa-cloud text-neon-green text-sm"></i>
+        <h3 class="text-sm font-semibold">AWS CloudTrail Ingestion</h3>
+      </div>
+      <p class="text-xs text-gray-300 leading-relaxed">
+        Collects JSON-formatted audit logs containing user activities, API calls, and security events from AWS environments for real-time analysis.
+      </p>
+    </div>
+
+    <!-- Log Processing -->
+    <div class="p-4 border border-neon-green rounded-lg bg-gray-900 bg-opacity-50">
+      <div class="flex items-center gap-2 mb-2">
+        <i class="fas fa-cogs text-neon-green text-sm"></i>
+        <h3 class="text-sm font-semibold">Log Processing Pipeline</h3>
+      </div>
+      <p class="text-xs text-gray-300 leading-relaxed">
+        Filebeat ships logs while Logstash performs ETL operations using Grok patterns for parsing, filtering, and data normalization.
+      </p>
+    </div>
+
+    <!-- Kafka -->
+    <div class="p-4 border border-neon-green rounded-lg bg-gray-900 bg-opacity-50">
+      <div class="flex items-center gap-2 mb-2">
+        <i class="fas fa-stream text-neon-green text-sm"></i>
+        <h3 class="text-sm font-semibold">Stream Processing</h3>
+      </div>
+      <p class="text-xs text-gray-300 leading-relaxed">
+        Dockerized Kafka cluster provides fault-tolerant message streaming with configurable partitioning for high-throughput data processing.
+      </p>
+    </div>
+
+    <!-- Morpheus -->
+    <div class="p-4 border border-neon-green rounded-lg bg-gray-900 bg-opacity-50">
+      <div class="flex items-center gap-2 mb-2">
+        <i class="fas fa-microchip text-neon-green text-sm"></i>
+        <h3 class="text-sm font-semibold">GPU-Accelerated Pipeline</h3>
+      </div>
+      <p class="text-xs text-gray-300 leading-relaxed">
+        Nvidia Morpheus framework with RAPIDS cuDF orchestrates ML pipeline stages for feature engineering and real-time inference.
+      </p>
+    </div>
+
+    <!-- Autoencoder -->
+    <div class="p-4 border border-neon-green rounded-lg bg-gray-900 bg-opacity-50">
+      <div class="flex items-center gap-2 mb-2">
+        <i class="fas fa-brain text-neon-green text-sm"></i>
+        <h3 class="text-sm font-semibold">Anomaly Detection Model</h3>
+      </div>
+      <p class="text-xs text-gray-300 leading-relaxed">
+        Deep learning Autoencoder trained on user behavior patterns, using reconstruction error as anomaly scores for threat detection.
+      </p>
+    </div>
+
+    <!-- Grafana -->
+    <div class="p-4 border border-neon-green rounded-lg bg-gray-900 bg-opacity-50">
+      <div class="flex items-center gap-2 mb-2">
+        <i class="fas fa-chart-bar text-neon-green text-sm"></i>
+        <h3 class="text-sm font-semibold">Real-time Monitoring</h3>
+      </div>
+      <p class="text-xs text-gray-300 leading-relaxed">
+        Grafana dashboards with Prometheus integration provide real-time visualization of anomaly scores and system metrics.
+      </p>
+    </div>
+  </div>
+
+  <!-- Resources & References -->
+  <p class="text-gray-400 text-xs mt-8 text-center max-w-3xl mx-auto">
+    Resources & References: Development leveraged Nvidia's self-paced Morpheus courses and official Nvidia Morpheus GitHub repository for implementation guidance and best practices.
+  </p>
+</article>
+
 
   <!-- =============================== RESULTS SLIDESHOW =============================== -->
   <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden p-8" data-aos="fade-up">
