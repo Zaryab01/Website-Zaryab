@@ -3,58 +3,58 @@
 {% block content %}
 
 <!-- Hero Section -->
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-12 lg:pt-16">
     <!-- Animated Background Elements -->
     <div class="absolute inset-0 cyber-grid opacity-10"></div>
     
     <!-- Main Hero Content -->
-    <div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
+    <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <!-- Main Title with Enhanced Glitch Effect -->
-        <div class="mb-8" data-aos="fade-up">
-            <h1 class="text-8xl md:text-9xl font-visitor text-neon-green animate-glitch pulse-neon mb-4" data-text="ZARYAB">
+        <div class="mb-8 md:mb-10" data-aos="fade-up">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-visitor text-neon-green animate-glitch pulse-neon mb-6" data-text="ZARYAB">
                 ZARYAB
             </h1>
             <div class="h-1 w-32 bg-neon-green mx-auto animate-pulse"></div>
         </div>
-        
+
         <!-- Subtitle with Typewriter Effect -->
-        <div class="mb-12" data-aos="fade-up" data-aos-delay="200">
-            <p class="text-2xl md:text-3xl text-neon-green mb-4 font-light">
+        <div class="mb-10" data-aos="fade-up" data-aos-delay="200">
+            <p class="text-lg md:text-xl text-neon-green mb-4 font-light">
                 <span id="typewriter" class="border-r-2 border-neon-green"></span>
             </p>
-            <p class="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                Crafting digital experiences through the fusion of artificial intelligence, 
+            <p class="text-sm md:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Crafting digital experiences through the fusion of artificial intelligence,
                 cybersecurity expertise, and cutting-edge web technologies.
             </p>
         </div>
-        
+
         <!-- Stats Counter -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12" data-aos="fade-up" data-aos-delay="400">
-            <div class="matrix-card p-6 text-center">
-                <div class="text-3xl font-bold text-neon-green counter" data-target="50">0</div>
-                <div class="text-sm text-gray-400 mt-2">Projects</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-12" data-aos="fade-up" data-aos-delay="400">
+            <div class="matrix-card p-5 text-center">
+                <div class="text-xl md:text-2xl font-bold text-neon-green counter" data-target="50">0</div>
+                <div class="text-xs md:text-sm text-gray-400 mt-2">Projects</div>
             </div>
-            <div class="matrix-card p-6 text-center">
-                <div class="text-3xl font-bold text-neon-green counter" data-target="2">0</div>
-                <div class="text-sm text-gray-400 mt-2">Years Experience</div>
+            <div class="matrix-card p-5 text-center">
+                <div class="text-xl md:text-2xl font-bold text-neon-green counter" data-target="2">0</div>
+                <div class="text-xs md:text-sm text-gray-400 mt-2">Years Experience</div>
             </div>
-            <div class="matrix-card p-6 text-center">
-                <div class="text-3xl font-bold text-neon-green counter" data-target="30">0</div>
-                <div class="text-sm text-gray-400 mt-2">Clients Served</div>
+            <div class="matrix-card p-5 text-center">
+                <div class="text-xl md:text-2xl font-bold text-neon-green counter" data-target="30">0</div>
+                <div class="text-xs md:text-sm text-gray-400 mt-2">Clients Served</div>
             </div>
-            <div class="matrix-card p-6 text-center">
-                <div class="text-3xl font-bold text-neon-green counter" data-target="24">0</div>
-                <div class="text-sm text-gray-400 mt-2">7 Availability</div>
+            <div class="matrix-card p-5 text-center">
+                <div class="text-xl md:text-2xl font-bold text-neon-green counter" data-target="24">0</div>
+                <div class="text-xs md:text-sm text-gray-400 mt-2">24/7 Availability</div>
             </div>
         </div>
-        
+
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="fade-up" data-aos-delay="600">
-            <a href="{% url 'about' %}" class="btn-matrix px-8 py-4 text-lg">
+        <div class="flex flex-col sm:flex-row gap-5 justify-center items-center" data-aos="fade-up" data-aos-delay="600">
+            <a href="{% url 'about' %}" class="btn-matrix px-7 py-3 text-base md:text-lg">
                 <i class="fas fa-user mr-2"></i>
                 Explore My Journey
             </a>
-            <a href="{% url 'contact' %}" class="btn-matrix px-8 py-4 text-lg">
+            <a href="{% url 'contact' %}" class="btn-matrix px-7 py-3 text-base md:text-lg">
                 <i class="fas fa-rocket mr-2"></i>
                 Start a Project
             </a>
@@ -71,21 +71,21 @@
 </section>
 
 <!-- Skills Showcase Section -->
-<section class="py-20 relative">
+<section class="py-14 md:py-18 relative">
     <div class="container mx-auto px-6">
-        <h2 class="text-5xl font-visitor text-center text-neon-green mb-16 pulse-neon" data-aos="fade-up">
+        <h2 class="text-3xl md:text-4xl font-visitor text-center text-neon-green mb-10 md:mb-14 pulse-neon" data-aos="fade-up">
             EXPERTISE MATRIX
         </h2>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Machine Learning Card -->
-            <div class="matrix-card p-8 group hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <div class="matrix-card p-7 group hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
                 <div class="text-center">
-                    <div class="w-16 h-16 bg-neon-green bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-opacity-40 transition-all">
-                        <i class="fas fa-brain text-2xl text-neon-green"></i>
+                    <div class="w-14 h-14 bg-neon-green bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-opacity-40 transition-all">
+                        <i class="fas fa-brain text-lg md:text-xl text-neon-green"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-neon-green mb-4">Machine Learning</h3>
-                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                    <h3 class="text-base md:text-lg font-bold text-neon-green mb-3">Machine Learning</h3>
+                    <p class="text-gray-300 text-xs md:text-sm leading-relaxed mb-6">
                         Advanced algorithms, neural networks, and AI solutions that push the boundaries of what's possible.
                     </p>
                     <div class="flex flex-wrap gap-2 justify-center">
@@ -95,15 +95,15 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Web Development Card -->
-            <div class="matrix-card p-8 group hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <div class="matrix-card p-7 group hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
                 <div class="text-center">
-                    <div class="w-16 h-16 bg-neon-green bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-opacity-40 transition-all">
-                        <i class="fas fa-code text-2xl text-neon-green"></i>
+                    <div class="w-14 h-14 bg-neon-green bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-opacity-40 transition-all">
+                        <i class="fas fa-code text-lg md:text-xl text-neon-green"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-neon-green mb-4">Web Development</h3>
-                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                    <h3 class="text-base md:text-lg font-bold text-neon-green mb-3">Web Development</h3>
+                    <p class="text-gray-300 text-xs md:text-sm leading-relaxed mb-6">
                         Full-stack applications with modern frameworks, responsive design, and seamless user experiences.
                     </p>
                     <div class="flex flex-wrap gap-2 justify-center">
@@ -115,13 +115,13 @@
             </div>
             
             <!-- Cybersecurity Card -->
-            <div class="matrix-card p-8 group hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+            <div class="matrix-card p-7 group hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
                 <div class="text-center">
-                    <div class="w-16 h-16 bg-neon-green bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-opacity-40 transition-all">
-                        <i class="fas fa-shield-alt text-2xl text-neon-green"></i>
+                    <div class="w-14 h-14 bg-neon-green bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-opacity-40 transition-all">
+                        <i class="fas fa-shield-alt text-lg md:text-xl text-neon-green"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-neon-green mb-4">Cybersecurity</h3>
-                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                    <h3 class="text-base md:text-lg font-bold text-neon-green mb-3">Cybersecurity</h3>
+                    <p class="text-gray-300 text-xs md:text-sm leading-relaxed mb-6">
                         Penetration testing, vulnerability assessment, and security architecture for digital fortification.
                     </p>
                     <div class="flex flex-wrap gap-2 justify-center">
@@ -136,58 +136,58 @@
 </section>
 
 <!-- Featured Projects Section -->
-<section class="py-20 relative">
+<section class="py-14 md:py-18 relative">
     <div class="container mx-auto px-6">
-        <h2 class="text-5xl font-visitor text-center text-neon-green mb-16 pulse-neon" data-aos="fade-up">
+        <h2 class="text-3xl md:text-4xl font-visitor text-center text-neon-green mb-10 md:mb-14 pulse-neon" data-aos="fade-up">
             FEATURED PROJECTS
         </h2>
-        
+
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <!-- Project 1 -->
-            <div class="matrix-card p-8 group" data-aos="fade-right">
-                <div class="relative overflow-hidden rounded-lg mb-6">
-                    <div class="w-full h-48 bg-gradient-to-br from-neon-green to-green-600 opacity-20 flex items-center justify-center">
-                        <i class="fas fa-robot text-6xl text-neon-green"></i>
+            <div class="matrix-card p-7 group" data-aos="fade-right">
+                <div class="relative overflow-hidden rounded-lg mb-5">
+                    <div class="w-full h-44 bg-gradient-to-br from-neon-green to-green-600 opacity-20 flex items-center justify-center">
+                        <i class="fas fa-robot text-5xl text-neon-green"></i>
                     </div>
                     <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <a href="{% url 'web_applications' %}#segmentation-platform" class="btn-matrix">View Project</a>
                     </div>
                 </div>
-                <h3 class="text-2xl font-bold text-neon-green mb-4">Segmentation Model — Marketing Science Ltd</h3>
-                <p class="text-gray-300 mb-4">
+                <h3 class="text-lg md:text-xl font-bold text-neon-green mb-4">Segmentation Model — Marketing Science Ltd</h3>
+                <p class="text-gray-300 text-xs md:text-sm mb-4 leading-relaxed">
                     A Django web platform built for Marketing Science Limited to analyze behavioral data and generate AI-powered personas using GPT-5 mini. It streamlines data input, standardization, factor analysis, clustering, and Excel exports, with visualizations like PCA plots, heatmaps and silhouette analysis for actionable insights.
                 </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Django</span>
+                <div class="flex flex-wrap gap-2 text-xs md:text-sm">
+                    <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green rounded-full">Django</span>
                     <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">GPT-5 API Integration</span>
                     <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Scikit-learn</span>
                 </div>
             </div>
             
             <!-- Project 2 -->
-            <div class="matrix-card p-8 group" data-aos="fade-left">
-                <div class="relative overflow-hidden rounded-lg mb-6">
-                    <div class="w-full h-48 bg-gradient-to-br from-neon-green to-green-600 opacity-20 flex items-center justify-center">
-                        <i class="fas fa-shield-virus text-6xl text-neon-green"></i>
+            <div class="matrix-card p-7 group" data-aos="fade-left">
+                <div class="relative overflow-hidden rounded-lg mb-5">
+                    <div class="w-full h-44 bg-gradient-to-br from-neon-green to-green-600 opacity-20 flex items-center justify-center">
+                        <i class="fas fa-shield-virus text-5xl text-neon-green"></i>
                     </div>
                     <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <a href="{% url 'anomaly_ids' %}" class="btn-matrix">View Project</a>
                     </div>
                 </div>
-                <h3 class="text-2xl font-bold text-neon-green mb-4">Anomaly-Based Intrusion Detection System</h3>
-                <p class="text-gray-300 mb-4">
+                <h3 class="text-lg md:text-xl font-bold text-neon-green mb-4">Anomaly-Based Intrusion Detection System</h3>
+                <p class="text-gray-300 text-xs md:text-sm mb-4 leading-relaxed">
                     A cloud-native system for real-time security anomaly detection, leveraging Kafka for scalable log ingestion, Nvidia Morpheus with a deep learning Autoencoder for threat detection, and Grafana for live dashboards. Built to process AWS/Azure CloudTrail logs, it ensures robust monitoring with GPU-accelerated pipelines.
                 </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Nvidia Morpheus</span>
+                <div class="flex flex-wrap gap-2 text-xs md:text-sm">
+                    <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green rounded-full">Nvidia Morpheus</span>
                     <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Apache Kafka</span>
                     <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Docker</span>
                 </div>
             </div>
         </div>
         
-        <div class="text-center mt-12" data-aos="fade-up">
-            <a href="#" onclick="toggleSection('projects')" class="btn-matrix px-8 py-4 text-lg">
+        <div class="text-center mt-10 md:mt-12" data-aos="fade-up">
+            <a href="{% url 'machine_learning' %}" class="btn-matrix px-7 py-3 text-base md:text-lg">
                 <i class="fas fa-folder-open mr-2"></i>
                 Explore All Projects
             </a>
@@ -196,22 +196,22 @@
 </section>
 
 <!-- Contact CTA Section -->
-<section class="py-20 relative">
+<section class="py-16 relative">
     <div class="container mx-auto px-6 text-center">
-        <div class="matrix-card p-12 max-w-4xl mx-auto" data-aos="zoom-in">
-            <h2 class="text-4xl font-visitor text-neon-green mb-6 pulse-neon">
+        <div class="matrix-card p-9 md:p-10 max-w-4xl mx-auto" data-aos="zoom-in">
+            <h2 class="text-2xl md:text-3xl font-visitor text-neon-green mb-6 pulse-neon">
                 READY TO BUILD THE FUTURE?
             </h2>
-            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Let's collaborate on your next groundbreaking project. From AI solutions to cybersecurity implementations, 
+            <p class="text-base md:text-lg text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Let's collaborate on your next groundbreaking project. From AI solutions to cybersecurity implementations,
                 I'm here to turn your vision into reality.
             </p>
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <a href="{% url 'contact' %}" class="btn-matrix px-8 py-4 text-lg">
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="{% url 'contact' %}" class="btn-matrix px-7 py-3 text-base md:text-lg">
                     <i class="fas fa-envelope mr-2"></i>
                     Get In Touch
                 </a>
-                <a href="{% url 'about' %}" class="btn-matrix px-8 py-4 text-lg">
+                <a href="{% url 'about' %}" class="btn-matrix px-7 py-3 text-base md:text-lg">
                     <i class="fas fa-download mr-2"></i>
                     Download Resume
                 </a>

@@ -9,6 +9,22 @@
     --black: #1A1A1A;
 }
 
+html {
+    font-size: 87.5%; /* 14px default for a slightly zoomed-out feel */
+}
+
+@media (max-width: 1024px) {
+    html {
+        font-size: 84%;
+    }
+}
+
+@media (max-width: 640px) {
+    html {
+        font-size: 80%;
+    }
+}
+
 .text-neon-green {
     color: #f8f7f4;
 }
@@ -31,10 +47,12 @@
 
 body {
     font-family: 'Visitor', monospace;
+    line-height: 1.5;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Visitor', monospace;
+    line-height: 1.1;
 }
 
 .hover\:shadow-neon-green:hover {
@@ -99,6 +117,11 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: flex-start;
     padding-left: 1rem;
+}
+
+.nav-link.active {
+    background-color: rgba(89, 104, 105, 0.25);
+    border-right: 4px solid var(--neon-blue);
 }
 
 .nav-preview {
