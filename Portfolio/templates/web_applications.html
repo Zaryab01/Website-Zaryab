@@ -11,129 +11,209 @@
     <h1 class="text-2xl md:text-3xl font-bold tracking-wide">Web Applications</h1>
   </div>
   <p class="mt-2 text-sm md:text-base text-gray-300 max-w-3xl">
-    A collection of full-stack applications built with Django, Flask, and supporting frameworks. Each project is tailored to solve real-world problems with emphasis on usability, reliability, and clean architecture.
+    A curated selection of production web apps I’ve shipped. The focus is reliable backends, fast UIs, and
+    features that deliver measurable impact.
   </p>
 </section>
 
 <section class="px-4 md:px-10 pb-20 space-y-12">
 
-  <!-- =============================== SEGMENTATION PLATFORM =============================== -->
-  <article id="segmentation-platform" class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
-    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+  <!-- ================= SEGMENTATION MODEL ================= -->
+  <article id="segmentation-platform" class="group relative rounded-2xl overflow-hidden" data-aos="fade-up">
+    <div class="bg-gradient-to-tr from-neon-green/30 via-white/5 to-transparent p-[1px] rounded-2xl">
+      <div class="rounded-2xl bg-black/70 backdrop-blur-xl border border-white/10 shadow-2xl transition-transform duration-300 group-hover:-translate-y-0.5">
+        <div class="p-6 md:p-8 space-y-6">
+          <header>
+            <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
+              <i class="fas fa-users-cog"></i>
+              Segmentation Model — Marketing Sciences Limited
+            </h2>
+            <!-- EXACT TAG STYLE (unchanged) -->
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Django</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">PostgreSQL</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">NumPy</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">scikit-learn</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">statsmodels</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Pandas</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Celery</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Tailwind</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">GPT-5 mini</span>
+            </div>
 
-    <div class="p-6 md:p-8 space-y-6">
-      <!-- Title -->
-      <header>
-        <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
-          <i class="fas fa-users-cog"></i>
-          Segmentation Model — Marketing Science Ltd
-        </h2>
+            <!-- Per-project intro (your wording + hosted link, copyright, client line) -->
+            <p class="mt-3 text-gray-300 text-sm md:text-[15px] leading-relaxed">
+              The Segmentation Model is a user-friendly web platform for analyzing behavioral data and generating AI-powered personas. Designed for marketing, research, and analytics, it transforms raw behavioral data into clear, actionable insights. The workflow includes data input, standardization, factor analysis, clustering, persona generation (via GPT-5 mini API), and export of structured results directly to Microsoft Excel. It also provides robust visualization tools such as PCA plots and silhouette analysis.
+            </p>
+            <p class="text-gray-400 text-xs">
+              Hosted at <a href="https://segmentation.marketsci.co.uk" target="_blank" class="underline hover:text-neon-green">segmentation.marketsci.co.uk</a>. Copyright © Marketing Sciences Ltd. <span class="opacity-80">Built for client Marketing Sciences Ltd.</span>
+            </p>
+          </header>
 
-        <div class="mt-2 flex flex-wrap gap-3 justify-left">
-                        <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Django</span>
-                        <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">GPT-5 API</span>
-                        <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Numpy</span>
-                        <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Scikit-learn</span>
-                        <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Statsmodels</span>
-                        <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Html</span>
-                        <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">CSS</span>
-                        <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Javascript</span>
-                    </div>
+          <!-- Balanced highlights -->
+          <ul class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>From Raw → Insights</h4><p>Upload, standardize, analyze—clear, actionable segmentation outputs.</p></div></li>
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>Factor & Clusters</h4><p>Factor analysis + K-means with scree and silhouette support.</p></div></li>
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>AI Personas</h4><p>Personas generated via GPT-5 mini API—fast, human-readable narratives.</p></div></li>
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>Excel Exports</h4><p>Structured multi-sheet Excel with factors, clusters, and personas.</p></div></li>
+          </ul>
 
-      </header>
-
-      <!-- Description -->
-      <p class="text-gray-200 text-sm leading-relaxed">
-        The Segmentation Model by <span class="font-semibold">Marketing Science Limited</span> is a user-friendly web platform
-        for analyzing behavioral data and generating AI-powered personas. Designed for marketing, research, and analytics,
-        it transforms raw behavioral data into <span class="text-neon-green">clear, actionable insights</span>. The workflow
-        includes data input, standardization, factor analysis, clustering, persona generation (via GPT-5 mini), and export
-        of structured results directly to Microsoft Excel. It also provides robust visualization tools such as PCA plots and silhouette analysis.
-        <br><br>
-        Hosted at <a href="https://segmentation.marketsci.co.uk" target="_blank" class="underline hover:text-neon-green">segmentation.marketsci.co.uk</a>.
-        Copyright © Marketing Science Ltd.
-      </p>
-
-      <!-- Screenshot Slider -->
-      <div class="relative border border-neon-green rounded-xl overflow-hidden">
-        <div id="segmentationSlider" class="slider w-full h-72 md:h-96 relative">
-          <div class="slide w-full h-full hidden"><img src="{% static 'images/segmentation/slide1.png' %}" alt="Segmentation Screenshot 1" class="w-full h-full object-cover" /></div>
-          <div class="slide w-full h-full hidden"><img src="{% static 'images/segmentation/slide2.png' %}" alt="Segmentation Screenshot 2" class="w-full h-full object-cover" /></div>
-          <div class="slide w-full h-full hidden"><img src="{% static 'images/segmentation/slide3.png' %}" alt="Segmentation Screenshot 3" class="w-full h-full object-cover" /></div>
-          <!-- Controls -->
-          <button class="prev absolute top-1/2 left-2 -translate-y-1/2 text-white"><i class="fas fa-chevron-left"></i></button>
-          <button class="next absolute top-1/2 right-2 -translate-y-1/2 text-white"><i class="fas fa-chevron-right"></i></button>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <!-- =============================== INVENTORY MANAGEMENT SYSTEM =============================== -->
-  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
-    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
-
-    <div class="p-6 md:p-8 space-y-6">
-      <!-- Title -->
-      <header>
-        <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
-          <i class="fas fa-warehouse"></i>
-          Restaurant Inventory Management System — Flask + PyQt5
-        </h2>
-      </header>
-
-      <!-- Description -->
-      <p class="text-gray-200 text-sm leading-relaxed">
-        A role-based inventory management system designed for restaurant operations. Built with <span class="font-semibold">Flask</span> (backend)
-        and <span class="font-semibold">PyQt5</span> (client GUI), it features secure account creation (passwords stored as hashes),
-        role-based access (Head Chef, Chef, Rider), automated stock reordering, expiry date tracking, and real-time shortage alerts.
-        The app launches in a <span class="text-neon-green">mobile-sized window</span>, designed for quick adoption in kitchen environments.
-      </p>
-
-      <!-- Mobile-Like Showcase -->
-      <div class="flex justify-center">
-        <div class="border-4 border-neon-green rounded-2xl w-52 h-[420px] overflow-hidden relative bg-black">
-          <div id="inventorySlider" class="slider w-full h-full relative">
-            <div class="slide w-full h-full hidden"><img src="{% static 'images/inventory/slide1.png' %}" alt="Inventory Screenshot 1" class="w-full h-full object-cover" /></div>
-            <div class="slide w-full h-full hidden"><img src="{% static 'images/inventory/slide2.png' %}" alt="Inventory Screenshot 2" class="w-full h-full object-cover" /></div>
-            <div class="slide w-full h-full hidden"><img src="{% static 'images/inventory/slide3.png' %}" alt="Inventory Screenshot 3" class="w-full h-full object-cover" /></div>
-            <!-- Controls -->
-            <button class="prev absolute top-1/2 left-1 -translate-y-1/2 text-white"><i class="fas fa-chevron-left"></i></button>
-            <button class="next absolute top-1/2 right-1 -translate-y-1/2 text-white"><i class="fas fa-chevron-right"></i></button>
+          <!-- Horizontal Scroll (2:1 PNG) -->
+          <div class="portfolio-track-wrapper mt-2">
+            <ul class="portfolio-track">
+              <li class="portfolio-track__item ar-2-1">
+                <button type="button" class="preview-btn" data-preview data-group="seg" data-ratio="2:1"
+                        data-full="{% static 'images/segmentation/seg-1.png' %}" data-caption="Dashboard overview">
+                  <img loading="lazy" src="{% static 'images/segmentation/seg-1.png' %}" alt="Segmentation — Dashboard overview">
+                </button>
+              </li>
+              <li class="portfolio-track__item ar-2-1">
+                <button type="button" class="preview-btn" data-preview data-group="seg" data-ratio="2:1"
+                        data-full="{% static 'images/segmentation/seg-2.png' %}" data-caption="PCA visualization">
+                  <img loading="lazy" src="{% static 'images/segmentation/seg-2.png' %}" alt="Segmentation — PCA visualization">
+                </button>
+              </li>
+              <li class="portfolio-track__item ar-2-1">
+                <button type="button" class="preview-btn" data-preview data-group="seg" data-ratio="2:1"
+                        data-full="{% static 'images/segmentation/seg-3.png' %}" data-caption="Cluster profiles">
+                  <img loading="lazy" src="{% static 'images/segmentation/seg-3.png' %}" alt="Segmentation — Cluster profiles">
+                </button>
+              </li>
+              <li class="portfolio-track__item ar-2-1">
+                <button type="button" class="preview-btn" data-preview data-group="seg" data-ratio="2:1"
+                        data-full="{% static 'images/segmentation/seg-4.png' %}" data-caption="Persona export">
+                  <img loading="lazy" src="{% static 'images/segmentation/seg-4.png' %}" alt="Segmentation — Persona export">
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </article>
 
-  <!-- =============================== MENU WEBSITE =============================== -->
-  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
-    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+  <!-- ================= INVENTORY MANAGEMENT ================= -->
+  <article class="group relative rounded-2xl overflow-hidden" data-aos="fade-up">
+    <div class="bg-gradient-to-tr from-neon-green/30 via-white/5 to-transparent p-[1px] rounded-2xl">
+      <div class="rounded-2xl bg-black/70 backdrop-blur-xl border border-white/10 shadow-2xl transition-transform duration-300 group-hover:-translate-y-0.5">
+        <div class="p-6 md:p-8 space-y-6">
+          <header>
+            <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
+              <i class="fas fa-warehouse"></i>
+              Restaurant Inventory Management — Flask + PyQt5
+            </h2>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Flask</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">PyQt5</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">SQLite</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Notifications</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Mobile-first</span>
+            </div>
+            <!-- Expanded intro -->
+            <p class="mt-3 text-gray-300 text-sm md:text-[15px] leading-relaxed">
+              A compact operations tool tailored for small kitchens that need discipline without complexity.
+              It streamlines daily prep by keeping on-hand quantities accurate, surfacing low-stock and expiry risks early,
+              and minimizing waste through timely prompts. The interface prioritizes speed on small screens and simple role-based actions,
+              so teams can update inventory while moving—no spreadsheets, no friction.
+            </p>
+          </header>
 
-    <div class="p-6 md:p-8 space-y-6">
-      <!-- Title -->
-      <header>
-        <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
-          <i class="fas fa-utensils"></i>
-          Interactive Menu & Checkout Website — Django
-        </h2>
-      </header>
+          <ul class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>Chef Flows</h4><p>Quick item updates and confirmations during service.</p></div></li>
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>Smart Alerts</h4><p>Shortage and expiry warnings with re-order tips.</p></div></li>
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>Mobile-first</h4><p>One-hand UI designed for tight kitchen spaces.</p></div></li>
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>Reliable Core</h4><p>SQLite-backed simplicity; easy on-prem deployment.</p></div></li>
+          </ul>
 
-      <!-- Description -->
-      <p class="text-gray-200 text-sm leading-relaxed">
-        A dynamic restaurant website featuring a multilingual menu (English ↔ Arabic), seamless checkout via Stripe API,
-        and cart management. Customers can browse items, add them to cart, and complete purchases securely. The platform
-        was engineered with scalability and localization in mind, ensuring accessibility for diverse audiences.
-      </p>
+          <!-- Horizontal Scroll (3:4 PNG ×4) -->
+          <div class="portfolio-track-wrapper mt-2">
+            <ul class="portfolio-track">
+              <li class="portfolio-track__item ar-3-4">
+                <button type="button" class="preview-btn" data-preview data-group="inv" data-ratio="3:4"
+                        data-full="{% static 'images/inventory/inv-1.png' %}" data-caption="Mobile home">
+                  <img loading="lazy" src="{% static 'images/inventory/inv-1.png' %}" alt="Inventory — Mobile home">
+                </button>
+              </li>
+              <li class="portfolio-track__item ar-3-4">
+                <button type="button" class="preview-btn" data-preview data-group="inv" data-ratio="3:4"
+                        data-full="{% static 'images/inventory/inv-2.png' %}" data-caption="Stock details">
+                  <img loading="lazy" src="{% static 'images/inventory/inv-2.png' %}" alt="Inventory — Stock details">
+                </button>
+              </li>
+              <li class="portfolio-track__item ar-3-4">
+                <button type="button" class="preview-btn" data-preview data-group="inv" data-ratio="3:4"
+                        data-full="{% static 'images/inventory/inv-3.png' %}" data-caption="Alerts and reorders">
+                  <img loading="lazy" src="{% static 'images/inventory/inv-3.png' %}" alt="Inventory — Alerts and reorders">
+                </button>
+              </li>
+              <li class="portfolio-track__item ar-3-4">
+                <button type="button" class="preview-btn" data-preview data-group="inv" data-ratio="3:4"
+                        data-full="{% static 'images/inventory/inv-4.png' %}" data-caption="Expiry tracking">
+                  <img loading="lazy" src="{% static 'images/inventory/inv-4.png' %}" alt="Inventory — Expiry tracking">
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
 
-      <!-- Screenshot Slider -->
-      <div class="relative border border-neon-green rounded-xl overflow-hidden">
-        <div id="menuSlider" class="slider w-full h-72 md:h-96 relative">
-          <div class="slide w-full h-full hidden"><img src="{% static 'images/menu/slide1.png' %}" alt="Menu Screenshot 1" class="w-full h-full object-cover" /></div>
-          <div class="slide w-full h-full hidden"><img src="{% static 'images/menu/slide2.png' %}" alt="Menu Screenshot 2" class="w-full h-full object-cover" /></div>
-          <div class="slide w-full h-full hidden"><img src="{% static 'images/menu/slide3.png' %}" alt="Menu Screenshot 3" class="w-full h-full object-cover" /></div>
-          <!-- Controls -->
-          <button class="prev absolute top-1/2 left-2 -translate-y-1/2 text-white"><i class="fas fa-chevron-left"></i></button>
-          <button class="next absolute top-1/2 right-2 -translate-y-1/2 text-white"><i class="fas fa-chevron-right"></i></button>
+  <!-- ================= MENU & CHECKOUT ================= -->
+  <article class="group relative rounded-2xl overflow-hidden" data-aos="fade-up">
+    <div class="bg-gradient-to-tr from-neon-green/30 via-white/5 to-transparent p-[1px] rounded-2xl">
+      <div class="rounded-2xl bg-black/70 backdrop-blur-xl border border-white/10 shadow-2xl transition-transform duration-300 group-hover:-translate-y-0.5">
+        <div class="p-6 md:p-8 space-y-6">
+          <header>
+            <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
+              <i class="fas fa-utensils"></i>
+              Interactive Menu & Checkout — Django
+            </h2>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Django</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Stripe</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">i18n</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Cart</span>
+              <span class="px-3 py-1 bg-neon-green bg-opacity-20 text-neon-green text-xs rounded-full">Tailwind</span>
+            </div>
+            <!-- Expanded intro -->
+            <p class="mt-3 text-gray-300 text-sm md:text-[15px] leading-relaxed">
+              A modern ordering flow for small restaurants that need a professional online presence without enterprise overheads.
+              The app provides a fast menu experience with clean category browsing, a persistent cart, and secure payments via Stripe.
+              It supports English and Arabic with RTL awareness, plus an admin-friendly menu editor so updates never block on redeploys.
+            </p>
+          </header>
+
+          <ul class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>i18n</h4><p>English ↔ Arabic with RTL-aware layouts.</p></div></li>
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>Payments</h4><p>Stripe checkout, coupons, confirmations.</p></div></li>
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>UX Details</h4><p>Persistent cart, filters, accessibility.</p></div></li>
+            <li class="feature-tile"><i class="far fa-check-circle text-neon-green"></i><div><h4>Admin Friendly</h4><p>Menu updates via dashboard—no redeploys.</p></div></li>
+          </ul>
+
+          <!-- Horizontal Scroll (2:1 JPG ×3) -->
+          <div class="portfolio-track-wrapper mt-2">
+            <ul class="portfolio-track">
+              <li class="portfolio-track__item ar-2-1">
+                <button type="button" class="preview-btn" data-preview data-group="menu" data-ratio="2:1"
+                        data-full="{% static 'images/menu/menu-1.jpg' %}" data-caption="Landing">
+                  <img loading="lazy" src="{% static 'images/menu/menu-1.jpg' %}" alt="Menu — Landing">
+                </button>
+              </li>
+              <li class="portfolio-track__item ar-2-1">
+                <button type="button" class="preview-btn" data-preview data-group="menu" data-ratio="2:1"
+                        data-full="{% static 'images/menu/menu-2.jpg' %}" data-caption="Category view">
+                  <img loading="lazy" src="{% static 'images/menu/menu-2.jpg' %}" alt="Menu — Category view">
+                </button>
+              </li>
+              <li class="portfolio-track__item ar-2-1">
+                <button type="button" class="preview-btn" data-preview data-group="menu" data-ratio="2:1"
+                        data-full="{% static 'images/menu/menu-3.jpg' %}" data-caption="Checkout">
+                  <img loading="lazy" src="{% static 'images/menu/menu-3.jpg' %}" alt="Menu — Checkout">
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -141,26 +221,137 @@
 
 </section>
 
-<!-- ===== Slider Logic ===== -->
-<script>
-  function initSlider(sliderId) {
-    const slider = document.getElementById(sliderId);
-    const slides = slider.querySelectorAll('.slide');
-    const prev = slider.querySelector('.prev');
-    const next = slider.querySelector('.next');
-    let idx = 0;
-    function showSlide(i) {
-      slides.forEach((s, j) => s.classList.toggle('hidden', j !== i));
-    }
-    function nextSlide() { idx = (idx + 1) % slides.length; showSlide(idx); }
-    function prevSlide() { idx = (idx - 1 + slides.length) % slides.length; showSlide(idx); }
-    next.addEventListener('click', nextSlide);
-    prev.addEventListener('click', prevSlide);
-    showSlide(idx);
+<!-- ===== Lightbox Overlay (ratio-aware, above navbar) ===== -->
+<div id="lightbox" class="fixed inset-0 hidden opacity-0 transition-opacity duration-150 bg-black/80 z-[99999] grid place-items-center p-4">
+  <button id="lightbox-close" type="button" aria-label="Close preview"
+          class="absolute top-3 right-3 text-white/80 hover:text-white text-3xl leading-none">&times;</button>
+  <button id="lightbox-prev" type="button" aria-label="Previous image"
+          class="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-2xl">&#10094;</button>
+
+  <!-- Ratio-framed container -->
+  <figure id="modal-frame" class="modal-frame ar-2-1">
+    <img id="lightbox-img" alt="" class="w-full h-full object-contain rounded-xl shadow-2xl border border-white/10">
+    <figcaption id="lightbox-cap" class="text-center text-gray-300 text-sm mt-3"></figcaption>
+  </figure>
+
+  <button id="lightbox-next" type="button" aria-label="Next image"
+          class="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 text-white/80 hover:text-white text-2xl">&#10095;</button>
+</div>
+
+<!-- ===== Scoped Styles ===== -->
+<style>
+  /* Feature tiles */
+  .feature-tile{
+    display:flex; gap:.6rem; align-items:flex-start;
+    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.10); border-radius:.9rem; padding:.9rem;
   }
-  initSlider('segmentationSlider');
-  initSlider('inventorySlider');
-  initSlider('menuSlider');
+  .feature-tile h4{ font-weight:600; margin:0 0 .15rem 0; }
+  .feature-tile p{ margin:0; color:#d1d5db; font-size:.9rem; line-height:1.2rem; }
+
+  /* Horizontal scroll */
+  .portfolio-track-wrapper{ width:100%; max-width:72rem; margin-inline:auto; overflow:hidden;
+    -webkit-mask: linear-gradient(90deg, transparent 0, black 12%, black 88%, transparent 100%) 0 50%/100% calc(100% - 1rem) no-repeat,
+                     linear-gradient(0deg, black, black) 50% 0/100% .5rem no-repeat,
+                     linear-gradient(0deg, black, black) 50% 100%/100% .5rem no-repeat;
+            mask: linear-gradient(90deg, transparent 0, black 12%, black 88%, transparent 100%) 0 50%/100% calc(100% - 1rem) no-repeat,
+                  linear-gradient(0deg, black, black) 50% 0/100% .5rem no-repeat,
+                  linear-gradient(0deg, black, black) 50% 100%/100% .5rem no-repeat; }
+  .portfolio-track{ --gap:.75rem; height: clamp(200px, 40vmin, 24rem); display:flex; gap:var(--gap);
+    list-style:none; margin:0; padding:.75rem 25%; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    -ms-overflow-style:none; scrollbar-width:none; }
+  .portfolio-track::-webkit-scrollbar{ display:none; }
+  .portfolio-track__item{ height:100%; border-radius:.9rem; overflow:hidden; background: rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08); scroll-snap-align:center; flex:0 0 auto; }
+  .portfolio-track__item img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* Aspect ratios */
+  .ar-2-1{ aspect-ratio: 2 / 1; }
+  .ar-3-4{ aspect-ratio: 3 / 4; }
+
+  /* Lightbox state + sizing */
+  #lightbox.show{ display:grid !important; opacity:1 !important; }
+  .preview-btn{ display:block; width:100%; height:100%; }
+
+  /* Ratio-aware modal frame: height-first to avoid over-zoom on PC */
+  .modal-frame{
+    /* Make the preview always fully visible on desktop */
+    height: min(85vh, 70vw);
+    width: auto;               /* width derives from height + aspect-ratio */
+    max-width: 92vw;           /* guard for ultra-wide */
+  }
+  .modal-frame.ar-2-1{ aspect-ratio: 2 / 1; }
+  .modal-frame.ar-3-4{ aspect-ratio: 3 / 4; }
+  #lightbox-img{ max-width:100%; max-height:100%; }
+</style>
+
+<!-- ===== Lightbox Script (ratio-aware, no deps) ===== -->
+<script>
+(function(){
+  const overlay  = document.getElementById('lightbox');
+  const frame    = document.getElementById('modal-frame');
+  const img      = document.getElementById('lightbox-img');
+  const cap      = document.getElementById('lightbox-cap');
+  const btnPrev  = document.getElementById('lightbox-prev');
+  const btnNext  = document.getElementById('lightbox-next');
+  const btnClose = document.getElementById('lightbox-close');
+
+  let groupEls = [], index = 0;
+
+  function setRatioClass(ratio){
+    frame.classList.remove('ar-2-1','ar-3-4');
+    if(ratio === '3:4'){ frame.classList.add('ar-3-4'); }
+    else { frame.classList.add('ar-2-1'); } // default
+  }
+
+  function openFrom(el){
+    const groupName = el.dataset.group || 'default';
+    const ratio     = el.dataset.ratio || '2:1';
+    groupEls = Array.from(document.querySelectorAll(`[data-preview][data-group="${groupName}"]`));
+    index = groupEls.indexOf(el);
+    setRatioClass(ratio);
+    show(el);
+    overlay.classList.add('show');
+    document.body.style.overflow='hidden';
+  }
+
+  function show(el){
+    const full    = el.dataset.full || (el.querySelector('img') && el.querySelector('img').src);
+    const caption = el.dataset.caption || (el.querySelector('img') && el.querySelector('img').alt) || '';
+    const ratio   = el.dataset.ratio || '2:1';
+    setRatioClass(ratio);
+    img.src = full; img.alt = caption; cap.textContent = caption;
+    setTimeout(()=>btnClose.focus(), 0);
+  }
+
+  function close(){
+    overlay.classList.remove('show');
+    document.body.style.overflow='';
+    img.src = ''; cap.textContent = '';
+  }
+
+  function step(dir){
+    if(!groupEls.length) return;
+    index = (index + dir + groupEls.length) % groupEls.length;
+    show(groupEls[index]);
+  }
+
+  document.querySelectorAll('[data-preview]').forEach(el=>{
+    el.addEventListener('click', e=>{ e.preventDefault(); openFrom(el); });
+  });
+
+  overlay.addEventListener('click', e=>{ if(e.target === overlay) close(); });
+  btnClose.addEventListener('click', close);
+  btnPrev.addEventListener('click', ()=>step(-1));
+  btnNext.addEventListener('click', ()=>step(1));
+
+  document.addEventListener('keydown', e=>{
+    if(!overlay.classList.contains('show')) return;
+    if(e.key === 'Escape') close();
+    if(e.key === 'ArrowLeft') step(-1);
+    if(e.key === 'ArrowRight') step(1);
+  });
+})();
 </script>
 
 {% endblock %}
