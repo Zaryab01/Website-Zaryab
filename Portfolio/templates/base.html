@@ -91,6 +91,23 @@
         
         <!-- Content Wrapper -->
         <div class="relative z-10">
+            {% if messages %}
+            <div class="pointer-events-none fixed top-6 right-6 z-50 space-y-4">
+                {% for message in messages %}
+                <div class="pointer-events-auto flex items-center gap-3 rounded-2xl border border-neon-green/50 bg-black/90 px-5 py-4 text-sm text-neon-green shadow-lg shadow-neon-green/20" role="alert" data-aos="fade-down">
+                    {% if message.tags == 'success' %}
+                    <i class="fas fa-check-circle text-lg text-neon-green"></i>
+                    {% elif message.tags == 'error' %}
+                    <i class="fas fa-exclamation-triangle text-lg text-neon-green"></i>
+                    {% else %}
+                    <i class="fas fa-info-circle text-lg text-neon-green"></i>
+                    {% endif %}
+                    <span>{{ message }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
             {% block content %}
             {% endblock %}
         </div>

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}About Me | Zaryab's Portfolio{% endblock %}
+
+{% block content %}
+<section class="relative px-6 sm:px-10 lg:px-16 py-20 space-y-20">
+    <div class="relative overflow-hidden rounded-3xl border border-neon-green/40 bg-black/80 shadow-lg shadow-neon-green/20" data-aos="fade-up">
+        <div class="absolute inset-0 bg-gradient-to-r from-neon-green/10 via-transparent to-neon-green/5"></div>
+        <div class="relative grid gap-12 lg:grid-cols-2 p-10">
+            <div class="space-y-6">
+                <span class="inline-flex items-center rounded-full border border-neon-green/70 px-4 py-1 text-xs uppercase tracking-[0.4em] text-neon-green/80">About</span>
+                <h1 class="text-4xl md:text-5xl font-bold text-neon-green leading-tight">
+                    Architecting secure, intelligent experiences for tomorrow's internet.
+                </h1>
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    I’m Zaryab – a security-focused engineer who loves orchestrating immersive digital stories. From anomaly detection engines to cinematic web apps, I blend machine learning, cybersecurity and design thinking to craft systems that feel alive.
+                </p>
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <div class="rounded-2xl border border-neon-green/30 bg-black/60 p-5">
+                        <div class="text-3xl font-semibold text-neon-green">8+</div>
+                        <p class="mt-2 text-sm uppercase tracking-wide text-gray-400">Major Platforms Delivered</p>
+                    </div>
+                    <div class="rounded-2xl border border-neon-green/30 bg-black/60 p-5">
+                        <div class="text-3xl font-semibold text-neon-green">4</div>
+                        <p class="mt-2 text-sm uppercase tracking-wide text-gray-400">Research Collaborations</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative flex items-center justify-center">
+                <div class="absolute -top-6 -right-6 h-32 w-32 rounded-full border border-neon-green/40 blur-xl"></div>
+                <div class="relative w-full max-w-sm rounded-3xl border border-neon-green/40 bg-gradient-to-br from-black via-gray-900 to-black p-8">
+                    <div class="text-sm uppercase tracking-[0.35em] text-gray-400">Core Stack</div>
+                    <div class="mt-6 grid grid-cols-2 gap-3 text-gray-200">
+                        <span class="rounded-lg border border-neon-green/30 bg-black/50 px-4 py-2 text-center text-sm">Django &amp; FastAPI</span>
+                        <span class="rounded-lg border border-neon-green/30 bg-black/50 px-4 py-2 text-center text-sm">React &amp; Next.js</span>
+                        <span class="rounded-lg border border-neon-green/30 bg-black/50 px-4 py-2 text-center text-sm">TensorFlow</span>
+                        <span class="rounded-lg border border-neon-green/30 bg-black/50 px-4 py-2 text-center text-sm">Kubernetes</span>
+                        <span class="rounded-lg border border-neon-green/30 bg-black/50 px-4 py-2 text-center text-sm">OWASP DevSecOps</span>
+                        <span class="rounded-lg border border-neon-green/30 bg-black/50 px-4 py-2 text-center text-sm">GraphQL</span>
+                    </div>
+                    <div class="mt-8 rounded-xl border border-neon-green/20 bg-black/60 p-5 text-sm leading-relaxed text-gray-300">
+                        "I translate complex security and AI concepts into approachable, human experiences that teams can trust and users can love."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid gap-12 lg:grid-cols-5">
+        <div class="lg:col-span-3 space-y-10" data-aos="fade-up">
+            <h2 class="text-3xl font-semibold text-neon-green">Journey Highlights</h2>
+            <div class="relative border-l border-neon-green/40 pl-10 space-y-10">
+                {% for achievement in achievements %}
+                <div class="relative rounded-2xl border border-neon-green/30 bg-black/70 p-6 shadow-lg shadow-neon-green/10" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:"1" }}00">
+                    <span class="absolute -left-5 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-neon-green bg-black text-sm font-semibold">{{ achievement.year }}</span>
+                    <h3 class="text-2xl font-semibold text-neon-green">{{ achievement.title }}</h3>
+                    <p class="mt-3 text-gray-300 leading-relaxed">{{ achievement.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="lg:col-span-2 space-y-10" data-aos="fade-up" data-aos-delay="200">
+            <div class="rounded-3xl border border-neon-green/40 bg-black/70 p-8">
+                <h2 class="text-3xl font-semibold text-neon-green">Capabilities Snapshot</h2>
+                <p class="mt-3 text-gray-400 text-sm leading-relaxed">Each capability is fuelled by a mix of research rigour and production experience.</p>
+                <div class="mt-8 space-y-6">
+                    {% for skill in skills %}
+                    <div>
+                        <div class="flex items-center justify-between text-sm text-gray-300">
+                            <span>{{ skill.name }}</span>
+                            <span>{{ skill.level }}%</span>
+                        </div>
+                        <div class="mt-2 h-2 rounded-full bg-gray-800">
+                            <div class="h-full rounded-full bg-neon-green/80" style="width: {{ skill.level }}%;"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="rounded-3xl border border-neon-green/40 bg-black/70 p-8 space-y-6" data-aos="fade-up" data-aos-delay="300">
+                <h2 class="text-3xl font-semibold text-neon-green">Design Principles</h2>
+                <div class="space-y-6">
+                    {% for principle in principles %}
+                    <div class="flex items-start gap-4 rounded-2xl border border-neon-green/20 bg-black/60 p-5">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-full border border-neon-green/40 bg-black text-neon-green">
+                            <i class="fas {{ principle.icon }} text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-neon-green">{{ principle.title }}</h3>
+                            <p class="mt-2 text-sm text-gray-300 leading-relaxed">{{ principle.copy }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rounded-3xl border border-neon-green/50 bg-gradient-to-br from-black via-gray-900 to-black p-10" data-aos="fade-up" data-aos-delay="150">
+        <div class="grid gap-8 lg:grid-cols-2 items-center">
+            <div class="space-y-4">
+                <h2 class="text-3xl font-semibold text-neon-green">Beyond the Screen</h2>
+                <p class="text-gray-300 leading-relaxed">
+                    When I’m away from the keyboard, you’ll find me experimenting with retro synths, reverse-engineering capture-the-flag puzzles, or mentoring emerging engineers. Creativity isn’t a switch I turn off—it’s the lens I bring to every challenge.
+                </p>
+            </div>
+            <div class="rounded-2xl border border-neon-green/30 bg-black/60 p-6">
+                <div class="text-sm uppercase tracking-[0.3em] text-gray-500">Currently Exploring</div>
+                <ul class="mt-4 space-y-3 text-gray-200">
+                    <li class="flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-neon-green"></span> Autonomous threat modelling agents</li>
+                    <li class="flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-neon-green"></span> Real-time graphics with WebGPU</li>
+                    <li class="flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-neon-green"></span> Story-driven UX for security dashboards</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

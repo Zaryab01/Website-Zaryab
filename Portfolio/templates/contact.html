@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Contact | Zaryab's Portfolio{% endblock %}
+
+{% block content %}
+<section class="relative px-6 sm:px-10 lg:px-16 py-20">
+    <div class="mx-auto max-w-6xl space-y-16">
+        <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]" data-aos="fade-up">
+            <div class="space-y-6">
+                <span class="inline-flex items-center rounded-full border border-neon-green/70 px-4 py-1 text-xs uppercase tracking-[0.4em] text-neon-green/80">Connect</span>
+                <h1 class="text-4xl md:text-5xl font-bold text-neon-green leading-tight">
+                    Let's build the next breakthrough together.
+                </h1>
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    Whether you’re exploring resilient infrastructure, crafting immersive digital journeys, or experimenting with AI, I’d love to collaborate. Drop a message and I’ll respond within 24 hours.
+                </p>
+
+                <div class="grid gap-4 sm:grid-cols-3">
+                    {% for channel in contact_channels %}
+                    <a href="{{ channel.href }}" target="_blank" rel="noopener" class="group rounded-2xl border border-neon-green/30 bg-black/70 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-neon-green hover:shadow-lg hover:shadow-neon-green/30">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-full border border-neon-green/40 text-neon-green">
+                            <i class="{{ channel.icon }} text-xl" aria-hidden="true"></i>
+                        </div>
+                        <div class="mt-4 text-sm uppercase tracking-wide text-gray-400">{{ channel.label }}</div>
+                        <div class="mt-1 text-neon-green">{{ channel.value }}</div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="relative rounded-3xl border border-neon-green/50 bg-black/80 p-10 shadow-xl shadow-neon-green/20" data-aos="fade-left">
+                <div class="absolute -top-5 -left-5 h-20 w-20 rounded-full border border-neon-green/30 blur-xl"></div>
+                <div class="relative">
+                    <h2 class="text-2xl font-semibold text-neon-green">Drop me a line</h2>
+                    <p class="mt-2 text-sm text-gray-400">Share a few details and I’ll reach back with next steps.</p>
+
+                    <form method="post" class="mt-8 space-y-6">
+                        {% csrf_token %}
+                        <div class="grid gap-6 sm:grid-cols-2">
+                            <div>
+                                <label for="name" class="text-sm uppercase tracking-wide text-gray-400">Name</label>
+                                <input type="text" id="name" name="name" required class="mt-2 w-full rounded-xl border border-neon-green/30 bg-black/70 px-4 py-3 text-neon-green placeholder-gray-500 focus:border-neon-green focus:outline-none focus:ring-2 focus:ring-neon-green/40" placeholder="Jane Doe">
+                            </div>
+                            <div>
+                                <label for="email" class="text-sm uppercase tracking-wide text-gray-400">Email</label>
+                                <input type="email" id="email" name="email" required class="mt-2 w-full rounded-xl border border-neon-green/30 bg-black/70 px-4 py-3 text-neon-green placeholder-gray-500 focus:border-neon-green focus:outline-none focus:ring-2 focus:ring-neon-green/40" placeholder="you@example.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="text-sm uppercase tracking-wide text-gray-400">Project spark</label>
+                            <input type="text" id="subject" name="subject" required class="mt-2 w-full rounded-xl border border-neon-green/30 bg-black/70 px-4 py-3 text-neon-green placeholder-gray-500 focus:border-neon-green focus:outline-none focus:ring-2 focus:ring-neon-green/40" placeholder="Secure AI assistant, immersive dashboard...">
+                        </div>
+                        <div>
+                            <label for="message" class="text-sm uppercase tracking-wide text-gray-400">Message</label>
+                            <textarea id="message" name="message" rows="5" required class="mt-2 w-full rounded-xl border border-neon-green/30 bg-black/70 px-4 py-3 text-neon-green placeholder-gray-500 focus:border-neon-green focus:outline-none focus:ring-2 focus:ring-neon-green/40" placeholder="Tell me about your vision and goals."></textarea>
+                        </div>
+
+                        <button type="submit" class="group relative inline-flex w-full items-center justify-center overflow-hidden rounded-xl border border-neon-green bg-gradient-to-r from-neon-green/80 to-neon-green px-6 py-3 text-black font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-neon-green/30">
+                            <span class="absolute inset-0 h-full w-full translate-y-full bg-black/10 transition-transform duration-300 group-hover:translate-y-0"></span>
+                            <span class="relative flex items-center gap-3 text-base">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid gap-8 lg:grid-cols-3" data-aos="fade-up" data-aos-delay="150">
+            <div class="rounded-2xl border border-neon-green/30 bg-black/70 p-8">
+                <div class="text-sm uppercase tracking-[0.3em] text-gray-400">Response Time</div>
+                <h3 class="mt-4 text-2xl font-semibold text-neon-green">Fast &amp; Thoughtful</h3>
+                <p class="mt-3 text-sm text-gray-300 leading-relaxed">Expect a detailed reply within one business day. I make sure to understand your goals before suggesting solutions.</p>
+            </div>
+            <div class="rounded-2xl border border-neon-green/30 bg-black/70 p-8">
+                <div class="text-sm uppercase tracking-[0.3em] text-gray-400">Working Model</div>
+                <h3 class="mt-4 text-2xl font-semibold text-neon-green">Collaborative &amp; Transparent</h3>
+                <p class="mt-3 text-sm text-gray-300 leading-relaxed">We’ll iterate together with clear milestones, real-time visibility, and security-first decisions throughout.</p>
+            </div>
+            <div class="rounded-2xl border border-neon-green/30 bg-black/70 p-8">
+                <div class="text-sm uppercase tracking-[0.3em] text-gray-400">Engagements</div>
+                <h3 class="mt-4 text-2xl font-semibold text-neon-green">From MVP to Scale</h3>
+                <p class="mt-3 text-sm text-gray-300 leading-relaxed">Available for technical leadership, rapid prototyping, audits, and long-term platform stewardship.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
