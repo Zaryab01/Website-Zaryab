@@ -17,4 +17,6 @@ urlpatterns = [
 
     # Cybersecurity
     path('cybersecurity/', views.cybersecurity, name='cybersecurity'),
+
+    path('cybersecurity/', views.cybersecurity, name='predict_eeg'),
 ]
