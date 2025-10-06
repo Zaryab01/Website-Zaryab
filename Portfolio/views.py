@@ -88,15 +88,15 @@ def contact(request):
         },
         {
             "label": "LinkedIn",
-            "value": "linkedin.com/in/zaryab",
+            "value": "https://www.linkedin.com/in/muhammad-zaryab-rajput/",
             "icon": "fab fa-linkedin-in",
-            "href": "https://www.linkedin.com/in/zaryab",
+            "href": "https://www.linkedin.com/in/muhammad-zaryab-rajput/",
         },
         {
             "label": "GitHub",
-            "value": "github.com/zaryab-labs",
+            "value": "github.com",
             "icon": "fab fa-github",
-            "href": "https://github.com/zaryab-labs",
+            "href": "https://github.com/",
         },
     ]
 
