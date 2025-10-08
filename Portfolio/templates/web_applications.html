@@ -222,7 +222,7 @@
 </section>
 
 <!-- ===== Lightbox Overlay (ratio-aware, above navbar) ===== -->
-<div id="lightbox" class="fixed inset-0 hidden opacity-0 transition-opacity duration-150 bg-black/80 z-[99999] grid place-items-center p-4">
+<div id="lightbox" class="fixed inset-0 hidden opacity-0 transition-opacity duration-150 bg-black/80 z-50 grid place-items-center p-4" style="z-index: 9999;">
   <button id="lightbox-close" type="button" aria-label="Close preview"
           class="absolute top-3 right-3 text-white/80 hover:text-white text-3xl leading-none">&times;</button>
   <button id="lightbox-prev" type="button" aria-label="Previous image"
@@ -271,6 +271,7 @@
 
   /* Lightbox state + sizing */
   #lightbox.show{ display:grid !important; opacity:1 !important; }
+  #lightbox{ z-index:9999 !important; }
   .preview-btn{ display:block; width:100%; height:100%; }
 
   /* Ratio-aware modal frame: height-first to avoid over-zoom on PC */

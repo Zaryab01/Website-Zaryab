@@ -46,27 +46,39 @@
             </a>
 
             <!-- Projects Section -->
-            <div class="px-6 pt-4 text-xs font-semibold uppercase tracking-widest text-gray-400">Projects</div>
-
-            <a href="{% url 'machine_learning' %}" class="nav-link group flex items-center px-8 py-2 text-sm transition-all duration-300 hover:bg-neon-green hover:bg-opacity-15">
-                <i class="fas fa-brain w-6 text-center mr-3 text-sm"></i>
-                <span>Machine Learning</span>
-            </a>
-
-            <a href="{% url 'web_applications' %}" class="nav-link group flex items-center px-8 py-2 text-sm transition-all duration-300 hover:bg-neon-green hover:bg-opacity-15">
-                <i class="fas fa-globe w-6 text-center mr-3 text-sm"></i>
-                <span>Web Applications</span>
-            </a>
-
-            <a href="{% url 'anomaly_ids' %}" class="nav-link group flex items-center px-8 py-2 text-sm transition-all duration-300 hover:bg-neon-green hover:bg-opacity-15">
-                <i class="fas fa-shield-alt w-6 text-center mr-3 text-sm"></i>
-                <span>Anomaly based IDS</span>
-            </a>
-
-            <a href="{% url 'cybersecurity' %}" class="nav-link group flex items-center px-8 py-2 text-sm transition-all duration-300 hover:bg-neon-green hover:bg-opacity-15">
-                <i class="fas fa-lock w-6 text-center mr-3 text-sm"></i>
-                <span>Cybersecurity</span>
-            </a>
+            <div class="projects-tree px-6 pt-4">
+                <div class="projects-tree__label">Projects</div>
+                <ul class="projects-tree__list">
+                    <li class="projects-tree__item">
+                        <a href="{% url 'anomaly_ids' %}" class="nav-link tree-link group text-sm transition-all duration-300">
+                            <i class="fas fa-shield-alt w-6 text-center"></i>
+                            <span>Anomaly Based IDS</span>
+                            <div class="nav-glow"></div>
+                        </a>
+                    </li>
+                    <li class="projects-tree__item">
+                        <a href="{% url 'cybersecurity' %}" class="nav-link tree-link group text-sm transition-all duration-300">
+                            <i class="fas fa-lock w-6 text-center"></i>
+                            <span>Cybersecurity</span>
+                            <div class="nav-glow"></div>
+                        </a>
+                    </li>
+                    <li class="projects-tree__item">
+                        <a href="{% url 'machine_learning' %}" class="nav-link tree-link group text-sm transition-all duration-300">
+                            <i class="fas fa-brain w-6 text-center"></i>
+                            <span>Machine Learning</span>
+                            <div class="nav-glow"></div>
+                        </a>
+                    </li>
+                    <li class="projects-tree__item">
+                        <a href="{% url 'web_applications' %}" class="nav-link tree-link group text-sm transition-all duration-300">
+                            <i class="fas fa-globe w-6 text-center"></i>
+                            <span>Web Applications</span>
+                            <div class="nav-glow"></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
             <!-- Contact -->
             <a href="{% url 'contact' %}" class="nav-link group flex items-center px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-20 hover:border-r-4 hover:border-neon-green mt-4" data-tooltip="Contact">
@@ -79,7 +91,7 @@
         <!-- Footer -->
         <div class="border-t border-neon-green p-4 text-center">
             <div class="text-xs text-gray-400 hidden md:block">
-                © 2024 Zaryab
+                © 2025 Zaryab
             </div>
         </div>
     </nav>

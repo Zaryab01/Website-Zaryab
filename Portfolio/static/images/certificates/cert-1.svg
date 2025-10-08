@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1f2937" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#39ff14" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#39ff14" stop-opacity="0.3" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="28" fill="url(#bg)" stroke="#39ff14" stroke-width="4" opacity="0.95" />
+  <rect x="40" y="48" width="720" height="404" rx="22" fill="rgba(15,23,42,0.75)" stroke="rgba(57,255,20,0.5)" stroke-width="2" />
+  <text x="400" y="120" font-family="'Montserrat', sans-serif" font-size="42" fill="#e5e7eb" text-anchor="middle">CYBERSECURITY CERTIFICATE</text>
+  <text x="400" y="180" font-family="'Montserrat', sans-serif" font-size="28" fill="#9ca3af" text-anchor="middle">Certified Offensive Security Analyst</text>
+  <line x1="120" y1="220" x2="680" y2="220" stroke="url(#accent)" stroke-width="4" stroke-linecap="round" />
+  <text x="150" y="280" font-family="'Courier New', monospace" font-size="20" fill="#9ca3af">Awarded to:</text>
+  <text x="150" y="320" font-family="'Montserrat', sans-serif" font-size="32" fill="#f9fafb">Muhammad Zaryab Rajput</text>
+  <text x="150" y="360" font-family="'Courier New', monospace" font-size="18" fill="#9ca3af">Issued: March 2024</text>
+  <text x="150" y="395" font-family="'Courier New', monospace" font-size="18" fill="#9ca3af">Credential ID: CYB-2024-0416</text>
+  <path d="M640 320 l28 -24 l28 24 l-12 0 l0 70 l-32 0 l0 -70 z" fill="#39ff14" opacity="0.7" />
+  <circle cx="668" cy="275" r="34" fill="none" stroke="#39ff14" stroke-width="4" opacity="0.7" />
+</svg>
