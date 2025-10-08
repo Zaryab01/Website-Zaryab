@@ -69,8 +69,8 @@
                             <span>{{ skill.name }}</span>
                             <span>{{ skill.level }}%</span>
                         </div>
-                        <div class="mt-2 h-2 rounded-full bg-gray-800">
-                            <div class="h-full rounded-full bg-neon-green/80" style="width: {{ skill.level }}%;"></div>
+                        <div class="mt-2 skill-meter">
+                            <div class="skill-meter__fill" style="width: {{ skill.level }}%;"></div>
                         </div>
                     </div>
                     {% endfor %}
