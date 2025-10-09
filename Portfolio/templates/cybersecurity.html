@@ -1,188 +1,334 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
+{% block title %}Cybersecurity | Zaryab's Portfolio{% endblock %}
 
-{% block title %}Cybersecurity — Zaryab{% endblock %}
+{% block extra_head %}
+<style>
+    .cyber-scroll-shell {
+        position: relative;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .cyber-scroll-shell::before,
+    .cyber-scroll-shell::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 88%;
+        height: 18px;
+        border: 2px solid rgba(57, 255, 20, 0.6);
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(57, 255, 20, 0.15), rgba(57, 255, 20, 0.4), rgba(57, 255, 20, 0.15));
+        filter: drop-shadow(0 0 12px rgba(57, 255, 20, 0.4));
+        z-index: 2;
+    }
+
+    .cyber-scroll-shell::before {
+        top: -24px;
+    }
+
+    .cyber-scroll-shell::after {
+        bottom: -24px;
+    }
+
+    .cyber-scroll {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(57, 255, 20, 0.35);
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
+        background: radial-gradient(circle at top, rgba(57, 255, 20, 0.18) 0%, rgba(0, 0, 0, 0.85) 55%, rgba(0, 0, 0, 0.95) 100%);
+        box-shadow: inset 0 0 30px rgba(57, 255, 20, 0.2), 0 20px 45px rgba(0, 0, 0, 0.6);
+        min-height: 360px;
+    }
+
+    .cyber-scroll::before,
+    .cyber-scroll::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        border: 1px solid rgba(57, 255, 20, 0.15);
+        pointer-events: none;
+    }
+
+    .cyber-scroll::before {
+        filter: blur(8px);
+    }
+
+    .cyber-scroll::after {
+        border: 1px solid rgba(57, 255, 20, 0.45);
+        opacity: 0.35;
+    }
+
+    .scroll-text {
+        max-height: 280px;
+        overflow: hidden;
+        position: relative;
+        padding-right: 0.5rem;
+    }
+
+    .scroll-text p {
+        color: rgba(226, 255, 232, 0.9);
+        line-height: 1.75;
+        font-size: 0.98rem;
+        text-shadow: 0 0 8px rgba(57, 255, 20, 0.35);
+    }
+
+    .scroll-gradient {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 32px;
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    .scroll-gradient.top {
+        top: 0;
+        background: linear-gradient(to bottom, rgba(2, 10, 2, 0.95), transparent);
+    }
+
+    .scroll-gradient.bottom {
+        bottom: 0;
+        background: linear-gradient(to top, rgba(2, 10, 2, 0.95), transparent);
+    }
+
+    .holo-runes {
+        position: absolute;
+        inset: 18px;
+        border-radius: 14px;
+        border: 1px dashed rgba(57, 255, 20, 0.3);
+        opacity: 0.5;
+        animation: runePulse 3s linear infinite;
+        pointer-events: none;
+    }
+
+    @keyframes runePulse {
+        0%, 100% {
+            opacity: 0.25;
+        }
+        50% {
+            opacity: 0.6;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .cyber-scroll-shell {
+            margin: 0 auto;
+            max-width: 380px;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<section class="px-4 md:px-10 pt-24 pb-12" data-aos="fade-down">
-  <div class="max-w-5xl">
-    <span class="inline-flex items-center rounded-full border border-neon-blue/60 px-4 py-1 text-xs uppercase tracking-[0.4em] text-neon-green/80">Cybersecurity</span>
-    <h1 class="mt-5 text-3xl md:text-4xl lg:text-5xl font-semibold text-neon-green leading-tight">
-      Security artistry backed by real-world operations, research, and relentless curiosity.
-    </h1>
-    <p class="mt-4 text-sm md:text-base text-gray-300 leading-relaxed max-w-3xl">
-      From offensive research to blue-team orchestration, I translate adversarial thinking into resilient systems. Below is a snapshot of my credentials and the hands-on tooling that keeps my engagements sharp.
-    </p>
+
+<!-- Intro header like anomaly_ids -->
+<section class="px-4 md:px-10 pt-24 pb-6" data-aos="fade-down">
+  <div class="flex items-center space-x-3">
+    <i class="fas fa-lock text-2xl"></i>
+    <h1 class="text-2xl md:text-3xl font-bold tracking-wide">Cybersecurity</h1>
   </div>
+  <p class="mt-2 text-sm md:text-base text-gray-300 max-w-3xl">
+    From securing digital infrastructures to crafting AI-driven defenses, this page highlights my work across detection engineering, offensive testing, and human-centered security design.
+  </p>
 </section>
 
-<section class="px-4 md:px-10 pb-20 space-y-12">
-  <article class="relative rounded-3xl border border-neon-blue/40 bg-black/70 backdrop-blur-xl shadow-xl shadow-neon-green/10 overflow-hidden" data-aos="fade-up">
-    <div class="absolute inset-0 bg-gradient-to-r from-neon-green/10 via-transparent to-neon-green/10 opacity-70"></div>
-    <div class="relative p-8 lg:p-10">
-      <header class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-        <div>
-          <h2 class="text-2xl font-semibold text-neon-green flex items-center gap-3">
-            <i class="fas fa-certificate"></i>
-            Credibility in Motion
-          </h2>
-          <p class="mt-2 text-sm text-gray-300 max-w-2xl">
-            Two flagship certifications showcased in a seamless carousel. Hover to pause, tap to focus—each slide captures the visual feel of the original credential.
-          </p>
-        </div>
-        <div class="hidden lg:flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-gray-400">
-          <span class="inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-neon-green"></span>Auto-switch</span>
-          <span>Every 2 seconds</span>
-        </div>
-      </header>
+<!-- Card stack container like anomaly_ids -->
+<section class="px-4 md:px-10 pb-20 space-y-10">
 
-      <div class="mt-8" data-cyber-carousel data-interval="2000">
-        <div class="cyber-carousel__viewport">
-          <div class="cyber-carousel__track">
-            <figure class="cyber-slide">
-              <img src="{% static 'images/certificates/cert-1.svg' %}" alt="Certified Offensive Security Analyst" loading="lazy">
-              <figcaption>Certified Offensive Security Analyst — issued March 2024.</figcaption>
-            </figure>
-            <figure class="cyber-slide">
-              <img src="{% static 'images/certificates/cert-2.svg' %}" alt="Blue Team Specialist Certification" loading="lazy">
-              <figcaption>Blue Team Specialist Certification — issued September 2023.</figcaption>
-            </figure>
+  <!-- ========== HERO: Fortifying digital realms... (as a card) ========== -->
+  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
+    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+
+    <div class="p-6 md:p-8">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] items-center">
+        <div class="space-y-6">
+
+          <h2 class="text-2xl md:text-3xl font-semibold text-neon-green leading-tight">
+            Fortifying digital realms with immersive, human-centric defense.
+          </h2>
+          <p class="text-base md:text-lg text-gray-300 leading-relaxed">
+            From predictive intrusion detection to resilient SOC workflows, I build cybersecurity experiences that fuse analytical rigour with cinematic clarity. Every dashboard, detection model, and automation playbook is crafted to empower defenders and illuminate complex threats.
+          </p>
+
+          <div class="grid gap-4 sm:grid-cols-3 text-sm uppercase tracking-wide text-gray-400">
+            <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
+              <div class="text-2xl font-semibold text-neon-green">BSc</div>
+              <p class="mt-2 text-xs text-gray-400">Cybersecurity</p>
+            </div>
+            <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
+              <div class="text-2xl font-semibold text-neon-green">Nvidia</div>
+              <p class="mt-2 text-xs text-gray-400">Morpheus Ops</p>
+            </div>
+            <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
+              <div class="text-2xl font-semibold text-neon-green">Bug Bounty</div>
+              <p class="mt-2 text-xs text-gray-400">Offensive Toolkit</p>
+            </div>
           </div>
         </div>
-        <div class="cyber-carousel__dots" role="tablist" aria-label="Certificate slides">
-          <button type="button" class="cyber-dot is-active" data-dot aria-label="View certificate 1"></button>
-          <button type="button" class="cyber-dot" data-dot aria-label="View certificate 2"></button>
+
+        <!-- right-side scroll “degree” element -->
+        <div class="scroll-degree-shell" data-aos="fade-left" data-aos-delay="150">
+            <div class="scroll-degree">
+                <div class="scroll-degree-inner" data-scroll-text>
+                <p>
+                    I earned my bachelor's degree in Cybersecurity by exploring the full spectrum of digital defense—from protocol dissection to orchestrating red-blue team engagements. That curiosity now fuels immersive security platforms where visual storytelling and tactical automation converge.
+                </p>
+                </div>
+            </div>
         </div>
+
       </div>
     </div>
   </article>
 
-  <article class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]" data-aos="fade-up" data-aos-delay="120">
-    <div class="rounded-3xl border border-neon-blue/35 bg-black/70 p-8 space-y-6 shadow-lg shadow-neon-blue/10">
-      <h2 class="text-2xl font-semibold text-neon-green flex items-center gap-3">
-        <i class="fas fa-toolbox"></i>
-        Offensive & Bug Bounty Toolkit
-      </h2>
-      <p class="text-sm text-gray-300 leading-relaxed">
-        I keep a disciplined methodology when working through reconnaissance, exploitation, and reporting. Each engagement starts with structured mapping and ends with actionable remediation guidance.
-      </p>
-      <div class="grid gap-4 sm:grid-cols-2">
-        <div class="cyber-card">
-          <div class="cyber-card__icon"><i class="fas fa-spider"></i></div>
-          <h3>Burp Suite Control</h3>
-          <p>Custom profiles, extender workflows, and repeater automation for complex session handling.</p>
-        </div>
-        <div class="cyber-card">
-          <div class="cyber-card__icon"><i class="fas fa-network-wired"></i></div>
-          <h3>Enumeration Stack</h3>
-          <p>Subdomain discovery, directory brute-force, and service fingerprinting tuned for stealth.</p>
-        </div>
-        <div class="cyber-card">
-          <div class="cyber-card__icon"><i class="fas fa-user-secret"></i></div>
-          <h3>Privilege Escalation</h3>
-          <p>Sharp scripts across Linux / Windows, leveraging misconfigs and kernel paths for escalation.</p>
-        </div>
-        <div class="cyber-card">
-          <div class="cyber-card__icon"><i class="fas fa-terminal"></i></div>
-          <h3>Kali Linux Workflow</h3>
-          <p>Battle-tested tooling with tmux automation, reporting templates, and repeatable lab setups.</p>
-        </div>
-      </div>
-    </div>
+  <!-- ========== Nvidia Morpheus Experience (card) ========== -->
+  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
+    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
 
-    <div class="rounded-3xl border border-neon-green/35 bg-black/70 p-8 space-y-6 shadow-lg shadow-neon-green/10" data-aos="fade-up" data-aos-delay="200">
-      <h2 class="text-2xl font-semibold text-neon-green flex items-center gap-3">
-        <i class="fas fa-flag"></i>
-        Capture the Flag Experience
-      </h2>
-      <ul class="space-y-4 text-sm text-gray-300 leading-relaxed">
-        <li class="flex items-start gap-3">
-          <span class="mt-1 h-2 w-2 rounded-full bg-neon-green"></span>
-          <div>
-            <h3 class="text-base font-semibold text-neon-green">VulnHub &amp; DVWA</h3>
-            <p>Completed machines such as Morpheus and DVWA with full kill-chain write-ups.</p>
-          </div>
-        </li>
-        <li class="flex items-start gap-3">
-          <span class="mt-1 h-2 w-2 rounded-full bg-neon-green"></span>
-          <div>
-            <h3 class="text-base font-semibold text-neon-green">Purple Teaming</h3>
-            <p>Pairing offensive insights with detection engineering to uplift blue-team visibility.</p>
-          </div>
-        </li>
-        <li class="flex items-start gap-3">
-          <span class="mt-1 h-2 w-2 rounded-full bg-neon-green"></span>
-          <div>
-            <h3 class="text-base font-semibold text-neon-green">Continuous Learning</h3>
-            <p>Daily reps on exploit development labs, OSINT sprints, and live fire-range simulations.</p>
-          </div>
-        </li>
+    <div class="p-6 md:p-8 space-y-6">
+      <header>
+        <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
+          <i class="fas fa-microchip text-neon-green"></i>
+          Nvidia Morpheus Experience
+        </h2>
+      </header>
+      <p class="text-gray-300 leading-relaxed">
+        I architected Morpheus pipelines that distil network telemetry into actionable narratives for analysts. From GPU-accelerated inference to adaptive response playbooks, I choreograph detection flows that keep pace with evolving adversaries.
+      </p>
+      <ul class="space-y-3 text-sm text-gray-300">
+        <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-neon-green"></span> Curated streaming telemetry and custom inference stages to spotlight lateral movement in real time.</li>
+        <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-neon-green"></span> Built immersive dashboards that translate GPU analytics into confident analyst decisions.</li>
+        <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-neon-green"></span> Automated Morpheus responses that synchronize with SIEM/SOAR stacks for decisive containment.</li>
       </ul>
     </div>
   </article>
+
+  <!-- ========== Offensive Craft (card) ========== -->
+  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
+    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+
+    <div class="p-6 md:p-8 space-y-6">
+      <header>
+        <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
+          <i class="fas fa-skull-crossbones text-neon-green"></i>
+          Offensive Craft
+        </h2>
+      </header>
+      <p class="text-gray-300 leading-relaxed">
+        Offensive exercises sharpen my defensive instincts. With Burp Suite, Kali Linux, and a repertoire of custom scripts, I map and stress-test every layer before attackers do.
+      </p>
+      <div class="grid gap-4 sm:grid-cols-2 text-sm text-gray-200">
+        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
+          <h3 class="text-lg font-semibold text-neon-green">Platform Dominance</h3>
+          <p class="mt-2 text-gray-400">DVWA, Morpheus, VulnHub machines</p>
+        </div>
+        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
+          <h3 class="text-lg font-semibold text-neon-green">Bug Bounty Toolkit</h3>
+          <p class="mt-2 text-gray-400">Subdomain enumeration, dir search, privilege escalation</p>
+        </div>
+        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
+          <h3 class="text-lg font-semibold text-neon-green">Burp Suite Expert</h3>
+          <p class="mt-2 text-gray-400">Automation, repeater magic &amp; intrusion detection bypass</p>
+        </div>
+        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
+          <h3 class="text-lg font-semibold text-neon-green">Kali Linux Workflow</h3>
+          <p class="mt-2 text-gray-400">Toolchain orchestration &amp; rapid post-exploit triage</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ========== Cyber Range Victories (card) ========== -->
+  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
+    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+
+    <div class="p-6 md:p-8 space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <h2 class="text-xl md:text-2xl font-semibold text-neon-green">Cyber Range Victories</h2>
+          <p class="text-gray-300 mt-2 max-w-2xl">
+            Solving capture-the-flag gauntlets sharpens instincts. Each environment is a theatre where methodology and improvisation collide to reveal the vulnerability narrative.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-2 text-[11px] md:text-xs uppercase tracking-[0.3em] text-gray-400">
+          <span class="px-3 py-1 rounded-full border border-neon-green">Morpheus</span>
+          <span class="px-3 py-1 rounded-full border border-neon-green">DVWA</span>
+          <span class="px-3 py-1 rounded-full border border-neon-green">VulnHub Labs</span>
+          <span class="px-3 py-1 rounded-full border border-neon-green">Custom CTFs</span>
+        </div>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-sm text-gray-200">
+        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-5">
+          <h3 class="text-lg font-semibold text-neon-green">Recon Rituals</h3>
+          <p class="mt-2 text-gray-400">Subdomain sweeps, OSINT correlation, adaptive wordlists.</p>
+        </div>
+        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-5">
+          <h3 class="text-lg font-semibold text-neon-green">Exploitation Craft</h3>
+          <p class="mt-2 text-gray-400">Chaining injection flaws with privilege escalation footholds.</p>
+        </div>
+        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-5">
+          <h3 class="text-lg font-semibold text-neon-green">Resilience Mapping</h3>
+          <p class="mt-2 text-gray-400">Documenting kill chains with actionable mitigation stories.</p>
+        </div>
+        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-5">
+          <h3 class="text-lg font-semibold text-neon-green">Continuous Learning</h3>
+          <p class="mt-2 text-gray-400">Iterating playbooks as adversaries mutate tactics.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ========== Certifications (card) ========== -->
+  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
+    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
+
+    <div class="p-6 md:p-8 space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div>
+          <h2 class="text-xl md:text-2xl font-semibold text-neon-green">Certifications</h2>
+          <p class="text-gray-300 mt-2">Snapshots of the credentials powering my craft. Certificates rotate automatically every two seconds.</p>
+        </div>
+        <div class="flex items-center gap-3 text-[11px] md:text-xs uppercase tracking-[0.3em] text-gray-400">
+          <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-neon-green"></span>Auto Cycle</span>
+          <span class="inline-flex items-center gap-2"><i class="fas fa-sync-alt text-neon-green"></i>2s Interval</span>
+        </div>
+      </div>
+
+      <div class="relative overflow-hidden rounded-2xl border border-neon-green/70 bg-black/60" data-certificate-slider>
+        <div class="flex transition-transform duration-700 ease-out" data-certificate-track>
+          <div class="min-w-full p-8 flex flex-col md:flex-row items-center gap-8">
+            <div class="h-48 w-full md:w-2/3 rounded-xl border border-dashed border-neon-green/70 bg-black/40 flex items-center justify-center text-gray-500">
+              <span class="text-center">Certificate Placeholder 1<br>Upload credential artwork</span>
+            </div>
+            <div class="text-gray-300 space-y-3 md:w-1/3">
+              <h3 class="text-lg md:text-2xl font-semibold text-neon-green">Advanced Offensive Security</h3>
+              <p>Credential validating my offensive playbooks, post-exploitation mastery, and threat emulation expertise.</p>
+            </div>
+          </div>
+
+          <div class="min-w-full p-8 flex flex-col md:flex-row items-center gap-8">
+            <div class="h-48 w-full md:w-2/3 rounded-xl border border-dashed border-neon-green/70 bg-black/40 flex items-center justify-center text-gray-500">
+              <span class="text-center">Certificate Placeholder 2<br>Upload credential artwork</span>
+            </div>
+            <div class="text-gray-300 space-y-3 md:w-1/3">
+              <h3 class="text-lg md:text-2xl font-semibold text-neon-green">Cloud Threat Hunting</h3>
+              <p>Certification demonstrating my ability to harden distributed systems and decode cloud-native attack paths.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- edge fades -->
+        <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black via-black/80 to-transparent pointer-events-none"></div>
+      </div>
+    </div>
+  </article>
+
 </section>
-
-<!-- Scoped styles -->
-<style>
-  [data-cyber-carousel]{ position:relative; display:block; }
-  .cyber-carousel__viewport{ overflow:hidden; border-radius:1.5rem; border:1px solid rgba(57,255,20,.35); background:rgba(0,0,0,.45); box-shadow:0 0 25px rgba(57,255,20,0.18); }
-  .cyber-carousel__track{ display:flex; transition:transform .6s ease; transform:translateX(calc(var(--cyber-index, 0) * -100%)); }
-  .cyber-slide{ flex:0 0 100%; padding:2rem; display:flex; flex-direction:column; align-items:center; gap:1rem; }
-  .cyber-slide img{ width:100%; max-width:720px; border-radius:1.25rem; box-shadow:0 0 20px rgba(57,255,20,0.25); border:1px solid rgba(255,255,255,0.08); }
-  .cyber-slide figcaption{ text-align:center; color:#d1d5db; font-size:.9rem; }
-  .cyber-carousel__dots{ display:flex; justify-content:center; gap:.75rem; margin-top:1.5rem; }
-  .cyber-dot{ width:.8rem; height:.8rem; border-radius:999px; border:1px solid rgba(57,255,20,.6); background:rgba(57,255,20,.15); box-shadow:0 0 12px rgba(57,255,20,0.25); transition:all .3s ease; }
-  .cyber-dot.is-active{ background:rgba(57,255,20,.8); box-shadow:0 0 18px rgba(57,255,20,0.5); }
-  .cyber-card{ border:1px solid rgba(57,255,20,.25); border-radius:1.25rem; padding:1.25rem; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.4)); display:flex; flex-direction:column; gap:.75rem; box-shadow:0 0 18px rgba(57,255,20,0.08); }
-  .cyber-card__icon{ width:2.5rem; height:2.5rem; border-radius:999px; border:1px solid rgba(57,255,20,.4); display:flex; align-items:center; justify-content:center; color:var(--neon-blue); background:rgba(57,255,20,.12); font-size:1.1rem; }
-  .cyber-card h3{ font-size:1.05rem; font-weight:600; color:#f8f7f4; margin:0; }
-  .cyber-card p{ font-size:.88rem; color:#d1d5db; margin:0; line-height:1.35rem; }
-  @media (max-width: 768px){
-    .cyber-slide{ padding:1.5rem; }
-    .cyber-slide img{ border-radius:1rem; }
-  }
-</style>
-
-<!-- Carousel script -->
-<script>
-  (function(){
-    const carousel = document.querySelector('[data-cyber-carousel]');
-    if(!carousel) return;
-    const track = carousel.querySelector('.cyber-carousel__track');
-    const slides = Array.from(track.children);
-    const dots = Array.from(carousel.querySelectorAll('[data-dot]'));
-    const interval = parseInt(carousel.dataset.interval || '2000', 10);
-    let index = 0;
-    let timer = null;
-
-    function setIndex(next){
-      index = (next + slides.length) % slides.length;
-      track.style.setProperty('--cyber-index', index);
-      dots.forEach((dot, i)=>dot.classList.toggle('is-active', i === index));
-    }
-
-    function start(){
-      stop();
-      timer = setInterval(()=>setIndex(index + 1), interval);
-    }
-
-    function stop(){
-      if(timer){
-        clearInterval(timer);
-        timer = null;
-      }
-    }
-
-    dots.forEach((dot, i)=>{
-      dot.addEventListener('click', ()=>{ setIndex(i); start(); });
-    });
-
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
-
-    setIndex(0);
-    start();
-  })();
-</script>
-
 {% endblock %}

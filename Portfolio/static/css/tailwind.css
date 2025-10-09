@@ -321,3 +321,99 @@ h1, h2, h3, h4, h5, h6 {
 .nav-link:hover .home-icon {
     filter: brightness(2) drop-shadow(0 0 10px var(--neon-blue));
 }
+
+.scroll-degree-shell {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 340px;
+  width: 100%;
+  margin: auto;
+}
+
+.scroll-degree {
+  position: relative;
+  background: linear-gradient(to bottom right, #1a1a1a, #2c2c2c, #0f0f0f);
+  border: 2px solid rgba(255, 213, 160, 0.4);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 0 30px rgba(255, 230, 180, 0.08),
+    0 10px 25px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(255, 204, 102, 0.1);
+  padding: 2rem 1.5rem;
+  overflow: hidden;
+  font-family: "Georgia", serif;
+  background-image: url("{% static 'img/parchment_texture.jpg' %}");
+  background-size: cover;
+  background-position: center;
+}
+
+.scroll-degree::before,
+.scroll-degree::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 20px;
+  background: radial-gradient(circle at center, rgba(80, 45, 20, 0.7), rgba(30, 15, 5, 0.8));
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+.scroll-degree::before {
+  top: -14px;
+}
+
+.scroll-degree::after {
+  bottom: -14px;
+}
+
+.scroll-degree-inner {
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  color: #f5e1b9;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+  line-height: 1.8;
+  font-size: 0.95rem;
+  background: linear-gradient(to bottom, rgba(255, 220, 150, 0.1), rgba(0, 0, 0, 0.6));
+  border-radius: 12px;
+  border: 1px solid rgba(255, 213, 160, 0.2);
+}
+
+/* Simulated scroll rods */
+.scroll-degree-shell::before,
+.scroll-degree-shell::after {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background: radial-gradient(circle at center, #55341a 0%, #2a1a0f 90%);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.scroll-degree-shell::before {
+  left: -16px;
+}
+
+.scroll-degree-shell::after {
+  right: -16px;
+}
+
+/* Scrollbar styling */
+.scroll-degree-inner::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-degree-inner::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 220, 150, 0.3);
+  border-radius: 4px;
+}
+.scroll-degree-inner::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
