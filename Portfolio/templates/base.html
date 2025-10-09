@@ -32,44 +32,56 @@
         <!-- Navigation Links -->
         <div id="nav-links" class="flex flex-col flex-1 py-6 space-y-1 overflow-y-auto">
             <!-- Home -->
-            <a href="{% url 'home' %}" class="nav-link group flex items-center px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-20 hover:border-r-4 hover:border-neon-green" data-tooltip="Home">
+            <a href="{% url 'home' %}" class="nav-link group flex items-center px-6 py-3 text-sm font-medium transition-all duration-300" data-tooltip="Home">
                 <i class="fas fa-home w-6 text-center mr-3"></i>
                 <span>Home</span>
                 <div class="nav-glow"></div>
             </a>
 
             <!-- About Me -->
-            <a href="{% url 'about' %}" class="nav-link group flex items-center px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-20 hover:border-r-4 hover:border-neon-green" data-tooltip="About Me">
+            <a href="{% url 'about' %}" class="nav-link group flex items-center px-6 py-3 text-sm font-medium transition-all duration-300" data-tooltip="About Me">
                 <i class="fas fa-user w-6 text-center mr-3"></i>
                 <span>About Me</span>
                 <div class="nav-glow"></div>
             </a>
 
             <!-- Projects Section -->
-            <div class="px-6 pt-4 text-xs font-semibold uppercase tracking-widest text-gray-400">Projects</div>
-
-            <a href="{% url 'machine_learning' %}" class="nav-link group flex items-center px-8 py-2 text-sm transition-all duration-300 hover:bg-neon-green hover:bg-opacity-15">
-                <i class="fas fa-brain w-6 text-center mr-3 text-sm"></i>
-                <span>Machine Learning</span>
-            </a>
-
-            <a href="{% url 'web_applications' %}" class="nav-link group flex items-center px-8 py-2 text-sm transition-all duration-300 hover:bg-neon-green hover:bg-opacity-15">
-                <i class="fas fa-globe w-6 text-center mr-3 text-sm"></i>
-                <span>Web Applications</span>
-            </a>
-
-            <a href="{% url 'anomaly_ids' %}" class="nav-link group flex items-center px-8 py-2 text-sm transition-all duration-300 hover:bg-neon-green hover:bg-opacity-15">
-                <i class="fas fa-shield-alt w-6 text-center mr-3 text-sm"></i>
-                <span>Anomaly based IDS</span>
-            </a>
-
-            <a href="{% url 'cybersecurity' %}" class="nav-link group flex items-center px-8 py-2 text-sm transition-all duration-300 hover:bg-neon-green hover:bg-opacity-15">
-                <i class="fas fa-lock w-6 text-center mr-3 text-sm"></i>
-                <span>Cybersecurity</span>
-            </a>
+            <div class="projects-tree px-6 pt-4">
+                <div class="projects-tree__label">Projects</div>
+                <ul class="projects-tree__list">
+                    <li class="projects-tree__item">
+                        <a href="{% url 'anomaly_ids' %}" class="nav-link tree-link group text-sm transition-all duration-300">
+                            <i class="fas fa-shield-alt w-6 text-center"></i>
+                            <span>Anomaly Based IDS</span>
+                            <div class="nav-glow"></div>
+                        </a>
+                    </li>
+                    <li class="projects-tree__item">
+                        <a href="{% url 'cybersecurity' %}" class="nav-link tree-link group text-sm transition-all duration-300">
+                            <i class="fas fa-lock w-6 text-center"></i>
+                            <span>Cybersecurity</span>
+                            <div class="nav-glow"></div>
+                        </a>
+                    </li>
+                    <li class="projects-tree__item">
+                        <a href="{% url 'machine_learning' %}" class="nav-link tree-link group text-sm transition-all duration-300">
+                            <i class="fas fa-brain w-6 text-center"></i>
+                            <span>Machine Learning</span>
+                            <div class="nav-glow"></div>
+                        </a>
+                    </li>
+                    <li class="projects-tree__item">
+                        <a href="{% url 'web_applications' %}" class="nav-link tree-link group text-sm transition-all duration-300">
+                            <i class="fas fa-globe w-6 text-center"></i>
+                            <span>Web Applications</span>
+                            <div class="nav-glow"></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
             <!-- Contact -->
-            <a href="{% url 'contact' %}" class="nav-link group flex items-center px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-20 hover:border-r-4 hover:border-neon-green mt-4" data-tooltip="Contact">
+            <a href="{% url 'contact' %}" class="nav-link group flex items-center px-6 py-3 text-sm font-medium transition-all duration-300 mt-4" data-tooltip="Contact">
                 <i class="fas fa-envelope w-6 text-center mr-3"></i>
                 <span>Contact</span>
                 <div class="nav-glow"></div>
@@ -79,7 +91,7 @@
         <!-- Footer -->
         <div class="border-t border-neon-green p-4 text-center">
             <div class="text-xs text-gray-400 hidden md:block">
-                © 2024 Zaryab
+                © 2025 Zaryab
             </div>
         </div>
     </nav>
@@ -114,7 +126,7 @@
     </main>
 
     <!-- Floating Chatbot Button -->
-    <div id="chatbot" class="fixed bottom-6 right-6 bg-gradient-to-r from-neon-green to-green-400 text-black p-4 rounded-full cursor-pointer hover:shadow-lg hover:shadow-neon-green transition-all duration-300 transform hover:scale-110 z-40 group">
+    <div id="chatbot" class="fixed bottom-6 right-6 text-black p-4 rounded-full cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:scale-110 z-40 group" style="background: linear-gradient(140deg, rgba(var(--neon-blue-rgb),0.95), rgba(12, 101, 196, 0.85)); box-shadow: 0 0 20px rgba(var(--neon-blue-rgb),0.25);">
         <i class="fas fa-comments text-xl"></i>
         <div class="absolute bottom-full right-0 mb-2 px-3 py-1 bg-black bg-opacity-90 text-neon-green text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
             Chat with me!
