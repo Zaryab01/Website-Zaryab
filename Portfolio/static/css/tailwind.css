@@ -87,9 +87,9 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(180deg, rgba(57, 255, 20, 0.0), rgba(57, 255, 20, 0.6), rgba(57, 255, 20, 0.0));
-    box-shadow: 0 0 18px rgba(57, 255, 20, 0.5);
-    filter: drop-shadow(0 0 6px rgba(57, 255, 20, 0.4));
+    background: linear-gradient(180deg, rgba(89, 104, 105, 0.0), rgba(89, 104, 105, 0.6), rgba(89, 104, 105, 0.0));
+    box-shadow: 0 0 18px rgba(89, 104, 105, 0.5);
+    filter: drop-shadow(0 0 6px rgba(89, 104, 105, 0.4));
 }
 
 .projects-tree__item {
@@ -106,8 +106,8 @@ h1, h2, h3, h4, h5, h6 {
     top: 1.05rem;
     width: 1rem;
     height: 2px;
-    background: linear-gradient(90deg, rgba(57, 255, 20, 0.0), rgba(57, 255, 20, 0.7));
-    box-shadow: 0 0 10px rgba(57, 255, 20, 0.45);
+    background: linear-gradient(90deg, rgba(89, 104, 105, 0.0), rgba(89, 104, 105, 0.7));
+    box-shadow: 0 0 10px rgba(89, 104, 105, 0.45);
 }
 
 .projects-tree__item:last-child {
@@ -145,7 +145,7 @@ h1, h2, h3, h4, h5, h6 {
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-    box-shadow: 0 0 18px rgba(57, 255, 20, 0.35);
+    box-shadow: 0 0 18px rgba(89, 104, 105, 0.35);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -175,8 +175,8 @@ h1, h2, h3, h4, h5, h6 {
 .skill-meter__fill {
     height: 100%;
     border-radius: inherit;
-    background: linear-gradient(90deg, rgba(57, 255, 20, 0.85), rgba(57, 255, 20, 0.45));
-    box-shadow: 0 0 18px rgba(57, 255, 20, 0.4);
+    background: linear-gradient(90deg, rgba(89, 104, 105, 0.85), rgba(89, 104, 105, 0.45));
+    box-shadow: 0 0 18px rgba(89, 104, 105, 0.4);
     transition: width 0.6s ease-in-out;
 }
 
