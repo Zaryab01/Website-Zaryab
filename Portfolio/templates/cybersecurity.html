@@ -1,334 +1,817 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Cybersecurity | Zaryab's Portfolio{% endblock %}
+{% block title %}Cybersecurity Skill Tree | Zaryab's Portfolio{% endblock %}
 
 {% block extra_head %}
+<link rel="preconnect" href="https://d3js.org">
+<script src="https://d3js.org/d3.v7.min.js" defer></script>
 <style>
-    .cyber-scroll-shell {
+    .skill-tree-wrapper {
         position: relative;
-        width: 100%;
-        max-width: 320px;
+        border: 1px solid rgba(89, 104, 105, 0.55);
+        border-radius: 24px;
+        background: radial-gradient(circle at top left, rgba(89, 104, 105, 0.22), rgba(0, 0, 0, 0.85) 45%, rgba(0, 0, 0, 0.95) 90%);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45), inset 0 0 0 2px rgba(64, 224, 208, 0.12);
+        overflow: hidden;
+        padding: 1.75rem 1.75rem 2.5rem;
     }
 
-    .cyber-scroll-shell::before,
-    .cyber-scroll-shell::after {
+    .skill-tree-wrapper::before {
         content: "";
         position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 88%;
-        height: 18px;
-        border: 2px solid rgba(57, 255, 20, 0.6);
-        border-radius: 999px;
-        background: linear-gradient(90deg, rgba(57, 255, 20, 0.15), rgba(57, 255, 20, 0.4), rgba(57, 255, 20, 0.15));
-        filter: drop-shadow(0 0 12px rgba(57, 255, 20, 0.4));
-        z-index: 2;
+        inset: 1px;
+        border-radius: 22px;
+        border: 1px dashed rgba(89, 104, 105, 0.28);
+        pointer-events: none;
+        opacity: 0.65;
     }
 
-    .cyber-scroll-shell::before {
-        top: -24px;
-    }
-
-    .cyber-scroll-shell::after {
-        bottom: -24px;
-    }
-
-    .cyber-scroll {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(57, 255, 20, 0.35);
-        border-radius: 20px;
-        padding: 2.5rem 2rem;
-        background: radial-gradient(circle at top, rgba(57, 255, 20, 0.18) 0%, rgba(0, 0, 0, 0.85) 55%, rgba(0, 0, 0, 0.95) 100%);
-        box-shadow: inset 0 0 30px rgba(57, 255, 20, 0.2), 0 20px 45px rgba(0, 0, 0, 0.6);
-        min-height: 360px;
-    }
-
-    .cyber-scroll::before,
-    .cyber-scroll::after {
+    .skill-tree-wrapper::after {
         content: "";
         position: absolute;
         inset: 0;
+        background: radial-gradient(circle at 15% 20%, rgba(89, 104, 105, 0.18), transparent 55%),
+                    radial-gradient(circle at 85% 80%, rgba(89, 104, 105, 0.12), transparent 60%);
+        pointer-events: none;
+        mix-blend-mode: screen;
+        opacity: 0.7;
+    }
+
+    .skill-tree-svg {
+        width: 100%;
+        height: 720px;
+    }
+
+    .skill-tree-node {
+        cursor: pointer;
+    }
+
+    .skill-tree-node circle {
+        fill: rgba(20, 28, 30, 0.88);
+        stroke: rgba(89, 104, 105, 0.9);
+        stroke-width: 2.5px;
+        filter: drop-shadow(0 0 12px rgba(89, 104, 105, 0.35));
+        transition: transform 0.3s ease, fill 0.3s ease, stroke-width 0.3s ease, filter 0.3s ease, stroke 0.3s ease;
+    }
+
+    .skill-tree-node.is-active circle {
+        fill: rgba(89, 104, 105, 0.25);
+        stroke-width: 3px;
+    }
+
+    .skill-tree-node:hover circle {
+        stroke: rgba(64, 224, 208, 0.95);
+        filter: drop-shadow(0 0 22px rgba(64, 224, 208, 0.65));
+        transform: scale(1.06);
+    }
+
+    .skill-tree-node rect {
+        fill: rgba(64, 224, 208, 0.18);
+        stroke: rgba(64, 224, 208, 0.55);
+        stroke-width: 1.6px;
+        filter: drop-shadow(0 0 16px rgba(64, 224, 208, 0.4));
+        transition: transform 0.3s ease, fill 0.3s ease, stroke 0.3s ease, filter 0.3s ease;
+    }
+
+    .skill-tree-node.is-active rect {
+        fill: rgba(64, 224, 208, 0.24);
+        stroke-width: 2px;
+    }
+
+    .skill-tree-node:hover rect {
+        stroke: rgba(64, 224, 208, 0.95);
+        filter: drop-shadow(0 0 22px rgba(64, 224, 208, 0.65));
+        transform: scale(1.03);
+    }
+
+    .skill-tree-node text {
+        fill: rgba(248, 247, 244, 0.92);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-shadow: 0 0 8px rgba(6, 10, 11, 0.9);
+        paint-order: stroke;
+        stroke: rgba(6, 10, 11, 0.8);
+        stroke-width: 3px;
+        stroke-linejoin: round;
+    }
+
+    .skill-tree-link {
+        fill: none;
+        stroke: rgba(89, 104, 105, 0.45);
+        stroke-width: 1.6px;
+        stroke-dasharray: 6 4;
+        filter: drop-shadow(0 0 6px rgba(89, 104, 105, 0.3));
+        transition: stroke 0.3s ease;
+    }
+
+    .skill-tree-details {
+        border: 1px solid rgba(89, 104, 105, 0.35);
         border-radius: 20px;
-        border: 1px solid rgba(57, 255, 20, 0.15);
-        pointer-events: none;
+        background: linear-gradient(145deg, rgba(16, 24, 26, 0.92), rgba(0, 0, 0, 0.92));
+        box-shadow: inset 0 0 20px rgba(89, 104, 105, 0.18), 0 18px 40px rgba(0, 0, 0, 0.55);
     }
 
-    .cyber-scroll::before {
-        filter: blur(8px);
+    .skill-tree-details h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
     }
 
-    .cyber-scroll::after {
-        border: 1px solid rgba(57, 255, 20, 0.45);
-        opacity: 0.35;
+    .skill-tree-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(89, 104, 105, 0.12);
+        border: 1px solid rgba(89, 104, 105, 0.45);
+        border-radius: 999px;
+        padding: 0.45rem 0.9rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: rgba(248, 247, 244, 0.88);
     }
 
-    .scroll-text {
-        max-height: 280px;
-        overflow: hidden;
+    .skill-tree-projects li {
+        border-left: 2px solid rgba(89, 104, 105, 0.4);
+        padding-left: 0.75rem;
+        margin-left: 0.3rem;
+        margin-top: 0.75rem;
+        color: rgba(232, 236, 236, 0.85);
+        font-size: 0.95rem;
+    }
+
+    .skill-tree-tools-block {
+        display: none;
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(89, 104, 105, 0.25);
+    }
+
+    .skill-tree-tools-block.is-visible {
+        display: block;
+    }
+
+    .skill-tree-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.75rem;
+    }
+
+    .skill-tree-tool {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(64, 224, 208, 0.12);
+        border: 1px solid rgba(64, 224, 208, 0.35);
+        color: rgba(203, 248, 243, 0.95);
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .skill-tree-legend {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .skill-tree-legend li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: rgba(232, 236, 236, 0.85);
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+    }
+
+    .skill-tree-legend span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid rgba(89, 104, 105, 0.7);
+        box-shadow: 0 0 10px rgba(89, 104, 105, 0.4);
+    }
+
+    .skill-tree-spotlight {
         position: relative;
-        padding-right: 0.5rem;
+        border-radius: 22px;
+        border: 1px solid rgba(89, 104, 105, 0.4);
+        background: linear-gradient(135deg, rgba(18, 28, 32, 0.95), rgba(7, 12, 14, 0.92));
+        padding: 1.75rem;
+        box-shadow: 0 22px 40px rgba(0, 0, 0, 0.45);
+        overflow: hidden;
     }
 
-    .scroll-text p {
-        color: rgba(226, 255, 232, 0.9);
-        line-height: 1.75;
-        font-size: 0.98rem;
-        text-shadow: 0 0 8px rgba(57, 255, 20, 0.35);
-    }
-
-    .scroll-gradient {
+    .skill-tree-spotlight::after {
+        content: "";
         position: absolute;
-        left: 0;
-        right: 0;
-        height: 32px;
+        inset: 0;
+        background: radial-gradient(circle at 20% 30%, rgba(64, 224, 208, 0.12), transparent 55%),
+                    radial-gradient(circle at 80% 70%, rgba(89, 104, 105, 0.18), transparent 60%);
+        opacity: 0.85;
         pointer-events: none;
-        z-index: 3;
+        mix-blend-mode: screen;
     }
 
-    .scroll-gradient.top {
-        top: 0;
-        background: linear-gradient(to bottom, rgba(2, 10, 2, 0.95), transparent);
+    .skill-tree-spotlight h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
     }
 
-    .scroll-gradient.bottom {
-        bottom: 0;
-        background: linear-gradient(to top, rgba(2, 10, 2, 0.95), transparent);
+    .skill-tree-spotlight p {
+        color: rgba(225, 232, 233, 0.9);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        max-width: 60ch;
     }
 
-    .holo-runes {
-        position: absolute;
-        inset: 18px;
-        border-radius: 14px;
-        border: 1px dashed rgba(57, 255, 20, 0.3);
-        opacity: 0.5;
-        animation: runePulse 3s linear infinite;
-        pointer-events: none;
+    .skill-tree-spotlight-highlight {
+        margin-top: 1rem;
+        padding-left: 1rem;
+        border-left: 2px solid rgba(64, 224, 208, 0.35);
+        color: rgba(203, 248, 243, 0.92);
+        font-size: 0.9rem;
+        letter-spacing: 0.03em;
     }
 
-    @keyframes runePulse {
-        0%, 100% {
-            opacity: 0.25;
-        }
-        50% {
-            opacity: 0.6;
+    .skill-tree-spotlight-note {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding: 0.55rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(64, 224, 208, 0.12);
+        border: 1px solid rgba(64, 224, 208, 0.35);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(203, 248, 243, 0.95);
+    }
+
+    @media (max-width: 1280px) {
+        .skill-tree-svg {
+            height: 640px;
         }
     }
 
     @media (max-width: 1024px) {
-        .cyber-scroll-shell {
-            margin: 0 auto;
-            max-width: 380px;
+        .skill-tree-wrapper {
+            padding: 1.25rem;
+        }
+
+        .skill-tree-svg {
+            height: 560px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .skill-tree-wrapper {
+            padding: 1rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .skill-tree-svg {
+            height: 500px;
+            min-width: 720px;
         }
     }
 </style>
 {% endblock %}
 
 {% block content %}
-
-<!-- Intro header like anomaly_ids -->
-<section class="px-4 md:px-10 pt-24 pb-6" data-aos="fade-down">
-  <div class="flex items-center space-x-3">
-    <i class="fas fa-lock text-2xl"></i>
-    <h1 class="text-2xl md:text-3xl font-bold tracking-wide">Cybersecurity</h1>
-  </div>
-  <p class="mt-2 text-sm md:text-base text-gray-300 max-w-3xl">
-    From securing digital infrastructures to crafting AI-driven defenses, this page highlights my work across detection engineering, offensive testing, and human-centered security design.
-  </p>
+<section class="px-4 md:px-10 pt-24 pb-10 space-y-6" data-aos="fade-down">
+    <div class="flex items-center space-x-3">
+        <i class="fas fa-lock text-2xl"></i>
+        <h1 class="text-2xl md:text-3xl font-bold tracking-wide">Cybersecurity Skill Tree</h1>
+    </div>
+    <p class="text-sm md:text-base text-gray-300 max-w-4xl">
+        Explore my cybersecurity journey through an interactive skill tree that maps how my BSc in Cybersecurity grew into living, resilient programs. <br><br>Each branch unlocks the tooling, research, and human-centric defenses I’ve engineered, from red-team tradecraft and adversary emulation to AI-assisted detection and governance at scale. <br><br>Start with the overview, then expand any node to see the stories, projects, and capabilities behind the work
+    </p>
 </section>
 
-<!-- Card stack container like anomaly_ids -->
-<section class="px-4 md:px-10 pb-20 space-y-10">
+<section class="px-4 md:px-10 pb-24 space-y-8">
 
-  <!-- ========== HERO: Fortifying digital realms... (as a card) ========== -->
-  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
-    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
-
-    <div class="p-6 md:p-8">
-      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] items-center">
-        <div class="space-y-6">
-
-          <h2 class="text-2xl md:text-3xl font-semibold text-neon-green leading-tight">
-            Fortifying digital realms with immersive, human-centric defense.
-          </h2>
-          <p class="text-base md:text-lg text-gray-300 leading-relaxed">
-            From predictive intrusion detection to resilient SOC workflows, I build cybersecurity experiences that fuse analytical rigour with cinematic clarity. Every dashboard, detection model, and automation playbook is crafted to empower defenders and illuminate complex threats.
-          </p>
-
-          <div class="grid gap-4 sm:grid-cols-3 text-sm uppercase tracking-wide text-gray-400">
-            <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
-              <div class="text-2xl font-semibold text-neon-green">BSc</div>
-              <p class="mt-2 text-xs text-gray-400">Cybersecurity</p>
-            </div>
-            <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
-              <div class="text-2xl font-semibold text-neon-green">Nvidia</div>
-              <p class="mt-2 text-xs text-gray-400">Morpheus Ops</p>
-            </div>
-            <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
-              <div class="text-2xl font-semibold text-neon-green">Bug Bounty</div>
-              <p class="mt-2 text-xs text-gray-400">Offensive Toolkit</p>
-            </div>
-          </div>
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,1.75fr)_minmax(0,1fr)] items-start">
+        <div class="skill-tree-wrapper" data-aos="fade-right">
+            <div id="skill-tree"></div>
         </div>
 
-        <!-- right-side scroll “degree” element -->
-        <div class="scroll-degree-shell" data-aos="fade-left" data-aos-delay="150">
-            <div class="scroll-degree">
-                <div class="scroll-degree-inner" data-scroll-text>
-                <p>
-                    I earned my bachelor's degree in Cybersecurity by exploring the full spectrum of digital defense—from protocol dissection to orchestrating red-blue team engagements. That curiosity now fuels immersive security platforms where visual storytelling and tactical automation converge.
-                </p>
-                </div>
+        <aside class="skill-tree-details p-6 md:p-8 space-y-5" data-aos="fade-left" id="node-details">
+            <div class="skill-tree-badge">
+                <i class="fas fa-sitemap"></i>
+                <span>Node Intel</span>
             </div>
-        </div>
-
-      </div>
+            <h3 class="text-neon-green">Cybersecurity Skill Tree</h3>
+            <p class="text-gray-300 text-sm leading-relaxed">
+                Select any node on the map to inspect core motivations, defensive outcomes, and shipping examples across my security
+                workstreams.
+            </p>
+            <ul class="skill-tree-projects text-sm"></ul>
+            <div class="skill-tree-tools-block">
+                <h4 class="uppercase tracking-widest text-xs text-gray-400">Featured Tools &amp; Frameworks</h4>
+                <div class="skill-tree-tools"></div>
+            </div>
+            <div>
+                <h4 class="uppercase tracking-widest text-xs text-gray-400">Legend</h4>
+                <ul class="skill-tree-legend mt-3">
+                    <li><span style="background: rgba(89, 104, 105, 0.32);"></span> Strategic Capability Cluster</li>
+                    <li><span style="background: rgba(89, 104, 105, 0.22);"></span> Specialized Discipline</li>
+                    <li><span style="background: rgba(89, 104, 105, 0.14);"></span> Tools, Frameworks &amp; Deliverables</li>
+                </ul>
+            </div>
+        </aside>
     </div>
-  </article>
-
-  <!-- ========== Nvidia Morpheus Experience (card) ========== -->
-  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
-    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
-
-    <div class="p-6 md:p-8 space-y-6">
-      <header>
-        <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
-          <i class="fas fa-microchip text-neon-green"></i>
-          Nvidia Morpheus Experience
-        </h2>
-      </header>
-      <p class="text-gray-300 leading-relaxed">
-        I architected Morpheus pipelines that distil network telemetry into actionable narratives for analysts. From GPU-accelerated inference to adaptive response playbooks, I choreograph detection flows that keep pace with evolving adversaries.
-      </p>
-      <ul class="space-y-3 text-sm text-gray-300">
-        <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-neon-green"></span> Curated streaming telemetry and custom inference stages to spotlight lateral movement in real time.</li>
-        <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-neon-green"></span> Built immersive dashboards that translate GPU analytics into confident analyst decisions.</li>
-        <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-neon-green"></span> Automated Morpheus responses that synchronize with SIEM/SOAR stacks for decisive containment.</li>
-      </ul>
-    </div>
-  </article>
-
-  <!-- ========== Offensive Craft (card) ========== -->
-  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
-    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
-
-    <div class="p-6 md:p-8 space-y-6">
-      <header>
-        <h2 class="text-xl md:text-2xl font-semibold flex items-center gap-3">
-          <i class="fas fa-skull-crossbones text-neon-green"></i>
-          Offensive Craft
-        </h2>
-      </header>
-      <p class="text-gray-300 leading-relaxed">
-        Offensive exercises sharpen my defensive instincts. With Burp Suite, Kali Linux, and a repertoire of custom scripts, I map and stress-test every layer before attackers do.
-      </p>
-      <div class="grid gap-4 sm:grid-cols-2 text-sm text-gray-200">
-        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
-          <h3 class="text-lg font-semibold text-neon-green">Platform Dominance</h3>
-          <p class="mt-2 text-gray-400">DVWA, Morpheus, VulnHub machines</p>
-        </div>
-        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
-          <h3 class="text-lg font-semibold text-neon-green">Bug Bounty Toolkit</h3>
-          <p class="mt-2 text-gray-400">Subdomain enumeration, dir search, privilege escalation</p>
-        </div>
-        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
-          <h3 class="text-lg font-semibold text-neon-green">Burp Suite Expert</h3>
-          <p class="mt-2 text-gray-400">Automation, repeater magic &amp; intrusion detection bypass</p>
-        </div>
-        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-4">
-          <h3 class="text-lg font-semibold text-neon-green">Kali Linux Workflow</h3>
-          <p class="mt-2 text-gray-400">Toolchain orchestration &amp; rapid post-exploit triage</p>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <!-- ========== Cyber Range Victories (card) ========== -->
-  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
-    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
-
-    <div class="p-6 md:p-8 space-y-6">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div>
-          <h2 class="text-xl md:text-2xl font-semibold text-neon-green">Cyber Range Victories</h2>
-          <p class="text-gray-300 mt-2 max-w-2xl">
-            Solving capture-the-flag gauntlets sharpens instincts. Each environment is a theatre where methodology and improvisation collide to reveal the vulnerability narrative.
-          </p>
-        </div>
-        <div class="flex flex-wrap gap-2 text-[11px] md:text-xs uppercase tracking-[0.3em] text-gray-400">
-          <span class="px-3 py-1 rounded-full border border-neon-green">Morpheus</span>
-          <span class="px-3 py-1 rounded-full border border-neon-green">DVWA</span>
-          <span class="px-3 py-1 rounded-full border border-neon-green">VulnHub Labs</span>
-          <span class="px-3 py-1 rounded-full border border-neon-green">Custom CTFs</span>
-        </div>
-      </div>
-
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-sm text-gray-200">
-        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-5">
-          <h3 class="text-lg font-semibold text-neon-green">Recon Rituals</h3>
-          <p class="mt-2 text-gray-400">Subdomain sweeps, OSINT correlation, adaptive wordlists.</p>
-        </div>
-        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-5">
-          <h3 class="text-lg font-semibold text-neon-green">Exploitation Craft</h3>
-          <p class="mt-2 text-gray-400">Chaining injection flaws with privilege escalation footholds.</p>
-        </div>
-        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-5">
-          <h3 class="text-lg font-semibold text-neon-green">Resilience Mapping</h3>
-          <p class="mt-2 text-gray-400">Documenting kill chains with actionable mitigation stories.</p>
-        </div>
-        <div class="rounded-2xl border border-neon-green/70 bg-black/60 p-5">
-          <h3 class="text-lg font-semibold text-neon-green">Continuous Learning</h3>
-          <p class="mt-2 text-gray-400">Iterating playbooks as adversaries mutate tactics.</p>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <!-- ========== Certifications (card) ========== -->
-  <article class="relative border border-neon-green rounded-2xl bg-black bg-opacity-60 shadow-xl overflow-hidden" data-aos="fade-up">
-    <div class="absolute inset-x-0 top-0 h-1 bg-neon-green opacity-60"></div>
-
-    <div class="p-6 md:p-8 space-y-6">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-        <div>
-          <h2 class="text-xl md:text-2xl font-semibold text-neon-green">Certifications</h2>
-          <p class="text-gray-300 mt-2">Snapshots of the credentials powering my craft. Certificates rotate automatically every two seconds.</p>
-        </div>
-        <div class="flex items-center gap-3 text-[11px] md:text-xs uppercase tracking-[0.3em] text-gray-400">
-          <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-neon-green"></span>Auto Cycle</span>
-          <span class="inline-flex items-center gap-2"><i class="fas fa-sync-alt text-neon-green"></i>2s Interval</span>
-        </div>
-      </div>
-
-      <div class="relative overflow-hidden rounded-2xl border border-neon-green/70 bg-black/60" data-certificate-slider>
-        <div class="flex transition-transform duration-700 ease-out" data-certificate-track>
-          <div class="min-w-full p-8 flex flex-col md:flex-row items-center gap-8">
-            <div class="h-48 w-full md:w-2/3 rounded-xl border border-dashed border-neon-green/70 bg-black/40 flex items-center justify-center text-gray-500">
-              <span class="text-center">Certificate Placeholder 1<br>Upload credential artwork</span>
-            </div>
-            <div class="text-gray-300 space-y-3 md:w-1/3">
-              <h3 class="text-lg md:text-2xl font-semibold text-neon-green">Advanced Offensive Security</h3>
-              <p>Credential validating my offensive playbooks, post-exploitation mastery, and threat emulation expertise.</p>
-            </div>
-          </div>
-
-          <div class="min-w-full p-8 flex flex-col md:flex-row items-center gap-8">
-            <div class="h-48 w-full md:w-2/3 rounded-xl border border-dashed border-neon-green/70 bg-black/40 flex items-center justify-center text-gray-500">
-              <span class="text-center">Certificate Placeholder 2<br>Upload credential artwork</span>
-            </div>
-            <div class="text-gray-300 space-y-3 md:w-1/3">
-              <h3 class="text-lg md:text-2xl font-semibold text-neon-green">Cloud Threat Hunting</h3>
-              <p>Certification demonstrating my ability to harden distributed systems and decode cloud-native attack paths.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- edge fades -->
-        <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none"></div>
-        <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black via-black/80 to-transparent pointer-events-none"></div>
-      </div>
-    </div>
-  </article>
-
 </section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const treeData = {
+            name: 'Cybersecurity Mastery',
+            description: 'End-to-end defender mindset spanning offensive research, detection engineering, and resilient automation.',
+            projects: [
+                'Architected SOC-ready dashboards blending threat intel with cinematic storytelling cues.',
+                'Mentored cross-functional teams to embed secure design principles in feature launches.'
+            ],
+            tools: ['Secure SDLC', 'Zero-Trust Architecture', 'Risk Modeling'],
+            children: [
+                {
+                    name: 'Ethical Hacking & Adversarial Research',
+                    description: 'Designs offensive simulations that uplift blue-team readiness and detection fidelity.',
+                    projects: [
+                        'Designed purple-team labs to rehearse adversary TTPs and tune detection thresholds.',
+                        'Curated payload libraries mapped to MITRE ATT&CK for iterative defense testing.'
+                    ],
+                    tools: ['MITRE ATT&CK', 'Purple Team Exercises', 'Adversary Emulation'],
+                    children: [
+                        {
+                            name: 'Penetration Testing Tooling',
+                            description: 'Practical exploit development and service hardening.',
+                            projects: [
+                                'Metasploit automation scripts for rapid service enumeration and validation.',
+                                'Burp Suite pipelines to stress-test auth flows and isolate injection flaws.'
+                            ],
+                            tools: ['Burp Suite', 'Metasploit', 'Nmap', 'OWASP ZAP'],
+                            children: [
+                                {
+                                    name: 'Burp Suite Kill-Chain Tests',
+                                    description: 'Burp Suite pipelines to stress-test auth flows and isolate injection flaws.',
+                                    projects: ['Automated active scans of auth and input flows, gating releases on findings.'],
+                                    tools: ['Burp Suite', 'CI/CD Security Gates']
+                                },
+                                {
+                                    name: 'Metasploit Enumeration Suite',
+                                    description: 'Metasploit automation scripts for rapid service enumeration and validation.',
+                                    projects: ['Reusable modules that snapshot exposed surfaces before red-team engagements.'],
+                                    tools: ['Metasploit', 'Ruby', 'Service Fingerprinting']
+                                }
+                            ]
+                        },
+                        {
+                            name: 'Red-Team Tradecraft',
+                            description: 'Operational playbooks to emulate real-world adversaries end-to-end.',
+                            projects: [
+                                'Crafted phishing simulations with adaptive lures tied to campaign analytics.',
+                                'Built C2 resilience experiments to evaluate endpoint telemetry coverage.'
+                            ],
+                            tools: ['Cobalt Strike', 'Atomic Red Team', 'Custom Phishing Kits', 'Sliver C2'],
+                            children: [
+                                {
+                                    name: 'Adaptive Phishing Labs',
+                                    description: 'Crafted phishing simulations with adaptive lures tied to campaign analytics.',
+                                    projects: ['Story-driven phishing exercises calibrated to user risk personas.'],
+                                    tools: ['Custom Phishing Kits', 'Analytics Dashboards']
+                                },
+                                {
+                                    name: 'C2 Resilience Experiments',
+                                    description: 'Built C2 resilience experiments to evaluate endpoint telemetry coverage.',
+                                    projects: ['Purple-team drills validating detections against Sliver and Cobalt Strike.'],
+                                    tools: ['Cobalt Strike', 'Sliver C2', 'EDR Telemetry']
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: 'Threat Intel & Detection',
+                    description: 'Transforms telemetry into actionable detections and narrative intelligence.',
+                    projects: [
+                        'Operationalized anomaly detectors using Nvidia Morpheus to fingerprint insider threats.',
+                        'Delivered hunt packages that sequence hypotheses, datasets, and validation scripts.'
+                    ],
+                    tools: ['Detection-as-Code', 'MITRE D3FEND', 'Security Data Lakes'],
+                    children: [
+                        {
+                            name: 'Machine Learning Defenses',
+                            description: 'Applies advanced analytics to uncover stealthy threat activity.',
+                            projects: [
+                                'PyTorch anomaly models correlating network baselines with system call deviations.',
+                                'Nvidia Morpheus digital fingerprinting research showcased at internal security summit.'
+                            ],
+                            tools: ['NVIDIA Morpheus', 'PyTorch', 'scikit-learn', 'JupyterLab'],
+                            children: [
+                                {
+                                    name: 'PyTorch Anomaly Models',
+                                    description: 'PyTorch anomaly models correlating network baselines with system call deviations.',
+                                    projects: ['GPU-accelerated models that detect low-and-slow insider activities.'],
+                                    tools: ['PyTorch', 'GPU Optimization', 'Feature Stores']
+                                },
+                                {
+                                    name: 'Nvidia Morpheus',
+                                    description: 'Nvidia Morpheus digital fingerprinting research showcased at internal security summit.',
+                                    projects: ['End-to-end pipeline that baselines users to flag drift in near real time.'],
+                                    tools: ['NVIDIA Morpheus', 'Kafka', 'Triton Inference']
+                                }
+                            ]
+                        },
+                        {
+                            name: 'Threat Hunting Ops',
+                            description: 'Codifies detection-as-code and high-signal queries.',
+                            projects: [
+                                'Sigma and KQL packages operationalized for cloud-native infrastructure.',
+                                'Story-driven hunt retros focused on kill-chain disruption and business impact.'
+                            ],
+                            tools: ['Sigma', 'KQL', 'Splunk', 'Elastic Stack'],
+                            children: [
+                                {
+                                    name: 'Sigma-as-Code Library',
+                                    description: 'Sigma and KQL packages operationalized for cloud-native infrastructure.',
+                                    projects: ['Versioned Sigma repo that compiles directly into SIEM rule deploys.'],
+                                    tools: ['Sigma', 'GitOps', 'CI Rule Testing']
+                                },
+                                {
+                                    name: 'Narrative Hunt Reviews',
+                                    description: 'Story-driven hunt retros focused on kill-chain disruption and business impact.',
+                                    projects: ['Executive-ready retros tying detections to attacker business outcomes.'],
+                                    tools: ['MITRE ATT&CK', 'Kill Chain Modeling']
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: 'Resilient Automation & Governance',
+                    description: 'Builds guardrails that scale securely with product velocity.',
+                    projects: [
+                        'Playbooks fusing SOAR runbooks with human-in-the-loop checkpoints.',
+                        'Executive-ready posture reporting blending compliance KPIs with live telemetry.'
+                    ],
+                    tools: ['SOAR Strategy', 'Continuous Compliance', 'Security Program Management'],
+                    children: [
+                        {
+                            name: 'Security Automation',
+                            description: 'High-trust orchestration across SOC tooling.',
+                            projects: [
+                                'Orchestrated Morpheus detections into Slack and PagerDuty triage loops.',
+                                'Terraform modules embedding zero-trust policies into CI/CD rollouts.'
+                            ],
+                            tools: ['SOAR Playbooks', 'PagerDuty', 'Slack', 'Terraform'],
+                            children: [
+                                {
+                                    name: 'Morpheus-to-Slack Bridge',
+                                    description: 'Orchestrated Morpheus detections into Slack and PagerDuty triage loops.',
+                                    projects: ['Automated channel creation and enrichment for high-fidelity alerts.'],
+                                    tools: ['Slack', 'PagerDuty', 'SOAR Connectors']
+                                },
+                                {
+                                    name: 'Terraform Guardrails',
+                                    description: 'Terraform modules embedding zero-trust policies into CI/CD rollouts.',
+                                    projects: ['Reusable IaC modules that inject policy-as-code controls during deploys.'],
+                                    tools: ['Terraform', 'OPA', 'CI/CD Pipelines']
+                                }
+                            ]
+                        },
+                        {
+                            name: 'Governance & Human Factors',
+                            description: 'Aligns policy, culture, and secure-by-design UX.',
+                            projects: [
+                                'Designed human-centric security briefings with interactive threat walkthroughs.',
+                                'Led risk workshops converting compliance controls into actionable engineering tasks.'
+                            ],
+                            tools: ['NIST CSF', 'ISO 27001', 'MITRE ATT&CK for ICS', 'Workshop Facilitation'],
+                            children: [
+                                {
+                                    name: 'Interactive Threat Briefings',
+                                    description: 'Designed human-centric security briefings with interactive threat walkthroughs.',
+                                    projects: ['Workshop series that translate technical risk into product decisions.'],
+                                    tools: ['Storytelling', 'Design Thinking']
+                                },
+                                {
+                                    name: 'Risk-to-Backlog Workshops',
+                                    description: 'Led risk workshops converting compliance controls into actionable engineering tasks.',
+                                    projects: ['Quarterly sessions that reframe compliance findings into sprint-ready work.'],
+                                    tools: ['Workshop Facilitation', 'Compliance Framework Mapping']
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        const container = document.getElementById('skill-tree');
+        const detailsPanel = document.getElementById('node-details');
+        const detailTitle = detailsPanel.querySelector('h3');
+        const detailDescription = detailsPanel.querySelector('p');
+        const detailProjects = detailsPanel.querySelector('.skill-tree-projects');
+        const detailToolsBlock = detailsPanel.querySelector('.skill-tree-tools-block');
+        const detailTools = detailsPanel.querySelector('.skill-tree-tools');
+
+        const automationSpotlightHighlight = document.getElementById('automation-spotlight-highlight');
+
+        const automationChildren = treeData.children || [];
+        const automationBranch = automationChildren.find(child => child.name === 'Resilient Automation & Governance');
+        if (automationBranch && automationSpotlightHighlight) {
+            automationSpotlightHighlight.textContent = `Spotlight Branch: ${automationBranch.name} — ${automationBranch.description}`;
+        }
+
+        const MIN_CANVAS_WIDTH = 720;
+        let width = Math.max(container.clientWidth, MIN_CANVAS_WIDTH);
+        let height = 720;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('class', 'skill-tree-svg')
+            .attr('width', width)
+            .attr('height', height)
+            .attr('viewBox', [0, 0, width, height])
+            .attr('preserveAspectRatio', 'xMidYMid meet');
+
+        const gLinks = svg.append('g').attr('class', 'skill-tree-links');
+        const gNodes = svg.append('g').attr('class', 'skill-tree-nodes');
+
+        const treeLayout = d3.tree().nodeSize([140, 260]);
+        let i = 0;
+        const root = d3.hierarchy(treeData);
+        root.x0 = height / 2;
+        root.y0 = width / 2;
+        if (root.children) {
+            root.children.forEach(collapse);
+        }
+
+        update(root);
+        focusNode(root);
+
+        window.addEventListener('resize', () => {
+            width = Math.max(container.clientWidth, MIN_CANVAS_WIDTH);
+            svg.attr('width', width).attr('viewBox', [0, 0, width, height]);
+            if (!root.children) {
+                root.x = height / 2;
+                root.y = width / 2;
+                root.x0 = root.x;
+                root.y0 = root.y;
+            }
+            update(root);
+        });
+
+        function collapse(node) {
+            if (node.children) {
+                node._children = node.children;
+                node._children.forEach(collapse);
+                node.children = null;
+            }
+        }
+
+        function update(source) {
+            treeLayout.size([height - 160, Math.max(320, width - 200)]);
+            const treeDataProcessed = treeLayout(root);
+            const nodes = treeDataProcessed.descendants();
+            const links = treeDataProcessed.links();
+
+            const rootExpanded = Boolean(root.children);
+            const horizontalSpacing = rootExpanded
+                ? Math.min(280, Math.max(220, (width - 320) / (treeDataProcessed.height || 1)))
+                : 0;
+
+            const isMobile = width <= 768;
+            const LEFT_SHIFT = (rootExpanded && isMobile) ? 120 : 0; // adjust 120 as you like
+
+            nodes.forEach(d => {
+                if (!rootExpanded) {
+                    d.x = height / 2;
+                    d.y = width / 2;
+                } else {
+                    if (d.depth === 0) {
+                        d.y = 140 - LEFT_SHIFT;
+                    } else {
+                        d.y = (d.depth * horizontalSpacing) + 140 - LEFT_SHIFT;
+                    }
+                }
+            });
+
+            const rootNode = nodes.find(d => d.depth === 0);
+            if (rootNode) {
+                const verticalOffset = (height / 2) - rootNode.x;
+                nodes.forEach(d => {
+                    d.x += verticalOffset;
+                });
+            }
+
+            const node = gNodes.selectAll('g.skill-tree-node')
+                .data(nodes, d => d.id || (d.id = ++i));
+
+            const nodeEnter = node.enter().append('g')
+                .attr('class', 'skill-tree-node')
+                .attr('transform', () => `translate(${source.y0},${source.x0})`)
+                .on('click', (event, d) => {
+                    toggle(d);
+                    update(d);
+                    focusNode(d);
+                });
+
+            nodeEnter.append('rect')
+                .attr('rx', 12)
+                .attr('ry', 12)
+                .attr('x', 0)
+                .attr('y', 0)
+                .attr('width', 0)
+                .attr('height', 0)
+                .style('display', 'none');
+
+            nodeEnter.append('circle')
+                .attr('r', 0)
+                .transition()
+                .duration(400)
+                .attr('r', 16);
+
+            nodeEnter.append('text')
+                .attr('dy', d => (!d.children && !d._children && d.depth >= 3) ? '0.35em' : '-1.8em')
+                .attr('text-anchor', 'middle')
+                .style('font-size', d => (!d.children && !d._children && d.depth >= 3) ? '0.75rem' : '0.85rem')
+                .text(d => d.data.name)
+                .style('opacity', 0)
+                .transition()
+                .duration(400)
+                .style('opacity', 1)
+                .attr('dy', d => (!d.children && !d._children && d.depth >= 3) ? '0.35em' : '-1.6em');
+
+            const nodeUpdate = nodeEnter.merge(node);
+
+            nodeUpdate.transition()
+                .duration(400)
+                .attr('transform', d => `translate(${d.y},${d.x})`);
+
+            nodeUpdate.classed('has-children', d => Boolean(d.children || d._children));
+            nodeUpdate.classed('is-project-leaf', d => !d.children && !d._children && d.depth >= 3);
+
+            nodeUpdate.select('circle')
+                .attr('r', d => {
+                    if (d.depth === 0) return 22;
+                    if (d.children || d._children) {
+                        return d.depth === 1 ? 18 : 16;
+                    }
+                    return 12;
+                })
+                .style('fill', d => {
+                    if (!d.depth) return 'rgba(89, 104, 105, 0.32)';
+                    if (d.children || d._children) return 'rgba(89, 104, 105, 0.22)';
+                    return 'rgba(89, 104, 105, 0.14)';
+                });
+
+            nodeUpdate.each(function (d) {
+                const group = d3.select(this);
+                const circle = group.select('circle');
+                const rect = group.select('rect');
+                const text = group.select('text');
+                const isProjectLeaf = !d.children && !d._children && d.depth >= 3;
+
+                if (isProjectLeaf) {
+                    const textNode = text.node();
+                    const textLength = textNode ? textNode.getComputedTextLength() : (d.data.name ? d.data.name.length * 7 : 0);
+                    const paddingX = 18;
+                    const widthRect = Math.max(140, textLength + paddingX * 2);
+                    const heightRect = 38;
+
+                    circle.style('display', 'none');
+
+                    rect
+                        .style('display', null)
+                        .attr('x', -widthRect / 2)
+                        .attr('y', -heightRect / 2)
+                        .attr('width', widthRect)
+                        .attr('height', heightRect);
+
+                    text
+                        .attr('dy', '0.35em')
+                        .style('font-size', '0.75rem');
+                } else {
+                    circle.style('display', null);
+
+                    rect
+                        .style('display', 'none')
+                        .attr('width', 0)
+                        .attr('height', 0)
+                        .attr('x', 0)
+                        .attr('y', 0);
+
+                    let dyValue = '-1.6em';
+                    if (d.depth === 0) {
+                        dyValue = '-2.4em';
+                    } else if (d.children || d._children) {
+                        dyValue = '-2em';
+                    }
+
+                    text
+                        .attr('dy', dyValue)
+                        .style('font-size', d.depth >= 2 ? '0.8rem' : '0.85rem');
+                }
+            });
+
+            const nodeExit = node.exit().transition()
+                .duration(300)
+                .attr('transform', () => `translate(${source.y},${source.x})`)
+                .remove();
+
+            nodeExit.select('circle')
+                .attr('r', 0);
+
+            nodeExit.select('rect')
+                .style('opacity', 0);
+
+            nodeExit.select('text')
+                .style('opacity', 0);
+
+            const link = gLinks.selectAll('path.skill-tree-link')
+                .data(links, d => d.target.id);
+
+            const linkEnter = link.enter().append('path')
+                .attr('class', 'skill-tree-link')
+                .attr('d', d => diagonal({ source: { x: source.x0, y: source.y0 }, target: { x: source.x0, y: source.y0 } }));
+
+            linkEnter.merge(link)
+                .transition()
+                .duration(400)
+                .attr('d', diagonal);
+
+            link.exit().transition()
+                .duration(300)
+                .attr('d', d => diagonal({ source: { x: source.x, y: source.y }, target: { x: source.x, y: source.y } }))
+                .remove();
+
+            nodes.forEach(d => {
+                d.x0 = d.x;
+                d.y0 = d.y;
+            });
+
+            if (!rootExpanded) {
+                root.x0 = height / 2;
+                root.y0 = width / 2;
+            }
+        }
+
+        function diagonal(link) {
+            return `M${link.source.y},${link.source.x}
+                    C${(link.source.y + link.target.y) / 2},${link.source.x}
+                     ${(link.source.y + link.target.y) / 2},${link.target.x}
+                     ${link.target.y},${link.target.x}`;
+        }
+
+        function toggle(d) {
+            if (d.children) {
+                d._children = d.children;
+                d.children = null;
+            } else {
+                d.children = d._children;
+                d._children = null;
+            }
+        }
+
+        function focusNode(d) {
+            gNodes.selectAll('.skill-tree-node').classed('is-active', node => node === d);
+            detailTitle.textContent = d.data.name;
+            detailDescription.textContent = d.data.description || 'Explore the connected skills and tools to reveal more.';
+
+            detailProjects.innerHTML = '';
+            if (d.data.projects && d.data.projects.length) {
+                d.data.projects.forEach(project => {
+                    const li = document.createElement('li');
+                    li.textContent = project;
+                    detailProjects.appendChild(li);
+                });
+            }
+
+            if (d.data.tools && d.data.tools.length) {
+                detailToolsBlock.classList.add('is-visible');
+                detailTools.innerHTML = '';
+                d.data.tools.forEach(tool => {
+                    const span = document.createElement('span');
+                    span.className = 'skill-tree-tool';
+                    span.textContent = tool;
+                    detailTools.appendChild(span);
+                });
+            } else {
+                detailToolsBlock.classList.remove('is-visible');
+                detailTools.innerHTML = '';
+            }
+        }
+    });
+</script>
 {% endblock %}
