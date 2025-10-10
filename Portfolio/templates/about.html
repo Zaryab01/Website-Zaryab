@@ -77,22 +77,6 @@
                 </div>
             </div>
 
-            <div class="rounded-3xl border border-neon-green/40 bg-black/70 p-8 space-y-6" data-aos="fade-up" data-aos-delay="300">
-                <h2 class="text-3xl font-semibold text-neon-green">Design Principles</h2>
-                <div class="space-y-6">
-                    {% for principle in principles %}
-                    <div class="flex items-start gap-4 rounded-2xl border border-neon-green/20 bg-black/60 p-5">
-                        <div class="flex h-12 w-12 items-center justify-center rounded-full border border-neon-green/40 bg-black text-neon-green">
-                            <i class="fas {{ principle.icon }} text-lg"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-neon-green">{{ principle.title }}</h3>
-                            <p class="mt-2 text-sm text-gray-300 leading-relaxed">{{ principle.copy }}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
         </div>
     </div>
 

@@ -88,7 +88,7 @@ def contact(request):
         },
         {
             "label": "LinkedIn",
-            "value": "https://www.linkedin.com/in/muhammad-zaryab-rajput/",
+            "value": "Muhammad Zaryab Rajput",
             "icon": "fab fa-linkedin-in",
             "href": "https://www.linkedin.com/in/muhammad-zaryab-rajput/",
         },
