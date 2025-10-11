@@ -24,10 +24,9 @@
     <nav id="sidebar" class="fixed left-0 top-0 h-full bg-black bg-opacity-95 w-64 md:w-72 flex flex-col z-30 border-r-2 border-neon-green backdrop-blur-sm transform -translate-x-full md:translate-x-0 transition-transform duration-300" aria-label="Main navigation">
         <!-- Logo/Brand Section -->
         <div class="flex items-center justify-center h-20 border-b border-neon-green bg-gradient-to-r from-black to-gray-900">
-            <div class="text-2xl font-bold text-neon-green animate-pulse">
-                <span class="hidden md:inline">ZARYAB</span>
-                <span class="md:hidden">Z</span>
-            </div>
+            <img src="{% static 'images/logo.png' %}"
+                alt="Zaryab Logo"
+                class="h-20 md:h-15 object-contain animate-pulse">
         </div>
 
         <!-- Navigation Links -->
