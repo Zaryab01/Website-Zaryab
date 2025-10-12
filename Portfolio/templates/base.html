@@ -11,6 +11,7 @@
     <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js" defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     {% block extra_head %}{% endblock %}
 </head>
@@ -21,84 +22,93 @@
     </button>
 
     <!-- Enhanced Navigation Bar -->
-    <nav id="sidebar" class="fixed left-0 top-0 h-full bg-black bg-opacity-95 w-64 md:w-72 flex flex-col z-30 border-r-2 border-neon-green backdrop-blur-sm transform -translate-x-full md:translate-x-0 transition-transform duration-300" aria-label="Main navigation">
-        <!-- Logo/Brand Section -->
-        <div class="flex items-center justify-center h-20 border-b border-neon-green bg-gradient-to-r from-black to-gray-900">
-            <img src="{% static 'images/logo.png' %}"
-                alt="Zaryab Logo"
-                class="h-20 md:h-15 object-contain animate-pulse">
-        </div>
-
-        <!-- Navigation Links -->
-        <div id="nav-links" class="flex flex-col flex-1 py-6 space-y-1 overflow-y-auto">
-            <!-- Home -->
-            <a href="{% url 'home' %}" class="nav-link group flex items-center px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-20 hover:border-r-4 hover:border-neon-green" data-tooltip="Home">
-                <i class="fas fa-home w-6 text-center mr-3"></i>
-                <span>Home</span>
-                <div class="nav-glow"></div>
-            </a>
-
-            <!-- About Me -->
-            <a href="{% url 'about' %}" class="nav-link group flex items-center px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-20 hover:border-r-4 hover:border-neon-green" data-tooltip="About Me">
-                <i class="fas fa-user w-6 text-center mr-3"></i>
-                <span>About Me</span>
-                <div class="nav-glow"></div>
-            </a>
-
-            <!-- Projects Section -->
-            <div class="projects-tree px-6 pt-4">
-                <div class="projects-tree__label">Projects</div>
-                <ul class="projects-tree__list">
-                    <li class="projects-tree__item">
-                        <a href="{% url 'machine_learning' %}" class="nav-link tree-link group text-sm transition-all duration-300">
-                            <i class="fas fa-brain w-6 text-center"></i>
-                            <span>Machine Learning</span>
-                            <div class="nav-glow"></div>
-                        </a>
-                    </li>
-                    <li class="projects-tree__item">
-                        <a href="{% url 'web_applications' %}" class="nav-link tree-link group text-sm transition-all duration-300">
-                            <i class="fas fa-globe w-6 text-center"></i>
-                            <span>Web Applications</span>
-                            <div class="nav-glow"></div>
-                        </a>
-                    </li>
-                    <li class="projects-tree__item">
-                        <a href="{% url 'anomaly_ids' %}" class="nav-link tree-link group text-sm transition-all duration-300">
-                            <i class="fas fa-shield-alt w-6 text-center"></i>
-                            <span>Anomaly Based IDS</span>
-                            <div class="nav-glow"></div>
-                        </a>
-                    </li>
-                    <li class="projects-tree__item">
-                        <a href="{% url 'cybersecurity' %}" class="nav-link tree-link group text-sm transition-all duration-300">
-                            <i class="fas fa-lock w-6 text-center"></i>
-                            <span>Cybersecurity</span>
-                            <div class="nav-glow"></div>
-                        </a>
-                    </li>
-
-                </ul>
+    <nav id="sidebar" class="hud-nav fixed left-0 top-0 h-full flex flex-col z-30 border-r-2 border-neon-green/70 backdrop-blur-sm bg-black/75 transform -translate-x-full md:translate-x-0 transition-transform duration-300" aria-label="Main navigation">
+        <div class="hud-nav__glare"></div>
+        <div class="hud-nav__inner">
+            <!-- Logo/Brand Section -->
+            <div class="hud-nav__brand">
+                <div class="hud-nav__brand-beacon"></div>
+                <img src="{% static 'images/logo.png' %}"
+                    alt="Zaryab Logo"
+                    class="hud-nav__brand-logo">
+                <div class="hud-nav__brand-text">
+                    <span class="hud-nav__brand-title">Zaryab</span>
+                    <span class="hud-nav__brand-subtitle">Futurist Engineer</span>
+                </div>
             </div>
 
-            <!-- Contact -->
-            <a href="{% url 'contact' %}" class="nav-link group flex items-center px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-neon-green hover:bg-opacity-20 hover:border-r-4 hover:border-neon-green mt-4" data-tooltip="Contact">
-                <i class="fas fa-envelope w-6 text-center mr-3"></i>
-                <span>Contact</span>
-                <div class="nav-glow"></div>
-            </a>
-        </div>
+            <!-- Navigation Links -->
+            <div id="nav-links" class="hud-nav__links flex flex-col flex-1 space-y-3 overflow-y-auto">
+                <a href="{% url 'home' %}" class="nav-link hud-nav__link group" data-tooltip="Home">
+                    <span class="hud-nav__link-icon"><i class="fas fa-home"></i></span>
+                    <span class="hud-nav__link-label">Home</span>
+                    <span class="hud-nav__link-glow" aria-hidden="true"></span>
+                </a>
 
-        <!-- Footer -->
-        <div class="border-t border-neon-green p-4 text-center">
-            <div class="text-xs text-gray-400 hidden md:block">
-                © 2025 Zaryab
+                <a href="{% url 'about' %}" class="nav-link hud-nav__link group" data-tooltip="About Me">
+                    <span class="hud-nav__link-icon"><i class="fas fa-user"></i></span>
+                    <span class="hud-nav__link-label">About Me</span>
+                    <span class="hud-nav__link-glow" aria-hidden="true"></span>
+                </a>
+
+                <!-- Projects HUD -->
+                <div class="hud-projects mt-2" data-hud-projects>
+                    <div class="hud-projects__header">
+                        <span class="hud-projects__title">Projects Matrix</span>
+                        <span class="hud-projects__status">live • synced</span>
+                    </div>
+                    <div class="hud-projects__viewport">
+                        <canvas id="projects-tree-canvas" class="hud-projects__canvas" aria-hidden="true"></canvas>
+                        <div id="projects-tree-label" class="hud-projects__label" role="presentation"></div>
+                        <ul id="projects-tree-fallback" class="hud-projects__list" role="list">
+                            <li class="hud-projects__node" data-project-node data-project-label="Machine Learning" data-node-index="0">
+                                <a href="{% url 'machine_learning' %}" class="nav-link hud-nav__link group" data-project-target>
+                                    <span class="hud-nav__link-icon"><i class="fas fa-brain"></i></span>
+                                    <span class="hud-nav__link-label">Machine Learning</span>
+                                    <span class="hud-nav__link-glow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li class="hud-projects__node" data-project-node data-project-label="Web Applications" data-node-index="1">
+                                <a href="{% url 'web_applications' %}" class="nav-link hud-nav__link group" data-project-target>
+                                    <span class="hud-nav__link-icon"><i class="fas fa-globe"></i></span>
+                                    <span class="hud-nav__link-label">Web Applications</span>
+                                    <span class="hud-nav__link-glow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li class="hud-projects__node" data-project-node data-project-label="Anomaly Based IDS" data-node-index="2">
+                                <a href="{% url 'anomaly_ids' %}" class="nav-link hud-nav__link group" data-project-target>
+                                    <span class="hud-nav__link-icon"><i class="fas fa-shield-alt"></i></span>
+                                    <span class="hud-nav__link-label">Anomaly Based IDS</span>
+                                    <span class="hud-nav__link-glow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li class="hud-projects__node" data-project-node data-project-label="Cybersecurity" data-node-index="3">
+                                <a href="{% url 'cybersecurity' %}" class="nav-link hud-nav__link group" data-project-target>
+                                    <span class="hud-nav__link-icon"><i class="fas fa-lock"></i></span>
+                                    <span class="hud-nav__link-label">Cybersecurity</span>
+                                    <span class="hud-nav__link-glow" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a href="{% url 'contact' %}" class="nav-link hud-nav__link group" data-tooltip="Contact">
+                    <span class="hud-nav__link-icon"><i class="fas fa-envelope"></i></span>
+                    <span class="hud-nav__link-label">Contact</span>
+                    <span class="hud-nav__link-glow" aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <!-- Footer -->
+            <div class="hud-nav__footer">
+                <span class="hud-nav__footer-text">© 2025 Zaryab</span>
             </div>
         </div>
     </nav>
 
     <!-- Main Content Area -->
-    <main class="relative min-h-screen pt-24 md:pt-12 md:ml-72">
+    <main class="hud-main relative min-h-screen pt-24 md:pt-12">
         <!-- Matrix Canvas Background -->
         <div id="matrix-canvas" class="fixed inset-0 z-0 opacity-20 pointer-events-none"></div>
         
@@ -139,6 +149,7 @@
 
     <!-- Scripts -->
     <script src="{% static 'js/matrix.js' %}"></script>
+    <script src="{% static 'js/projectsTree.js' %}" defer></script>
     <script src="{% static 'js/nav.js' %}"></script>
     <script src="{% static 'js/chatbot.js' %}"></script>
     {% block extra_scripts %}{% endblock %}
