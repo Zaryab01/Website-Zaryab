@@ -280,6 +280,10 @@
     const btnNext  = document.getElementById('lightbox-next');
     const btnClose = document.getElementById('lightbox-close');
 
+    if(overlay && overlay.parentElement !== document.body){
+      document.body.appendChild(overlay);
+    }
+
     let groupEls = [], index = 0;
 
     function setRatioClass(ratio){
